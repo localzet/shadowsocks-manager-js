@@ -4,7 +4,7 @@
 
 # Shadowsocks Manager
 
-[GitHub](https://github.com/shadowsocks/shadowsocks-manager/)
+[GitHub](https://github.com/localzet/shadowsocks-manager-js/)
 [Docs](/home)
 
 ![color](#FAFAFA)

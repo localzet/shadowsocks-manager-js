@@ -1,27 +1,27 @@
-* [首页](/home)
+* [Главная](/home)
 
-* 入门
-  * [安装](/install)
-  * [配置](/config)
+* Начало работы
+  * [Установка](/install)
+  * [Настройка](/config)
 
-* 进阶
-  * [高级配置](/advanced)
-  * [WireGuard节点](/wireguard)
-  * [Trojan节点](/trojan)
-  * [支付](/pay)
-  * [首页皮肤](/skin)
+* Продвинутый уровень
+  * [Расширенная настройка](/advanced)
+  * [Узлы WireGuard](/wireguard)
+  * [Узлы Trojan](/trojan)
+  * [Оплата](/pay)
+  * [Скины](/skin)
 
-* 使用
-  * [管理员](/admin)
-  * [普通用户](/user)
+* Использование
+  * [Администратор](/admin)
+  * [Пользователь](/user)
 
-* 升级与迁移
-  * [升级](/upgrade)
-  * [迁移](/transfer)
+* Обновление и перенос
+  * [Обновление](/upgrade)
+  * [Перенос](/transfer)
 
-* 原理
-  * [拓扑图](/topological)
+* Принцип работы
+  * [Топологическая карта](/topological)
   * [manager API](/managerapi)
   * [ssmgr API](/ssmgrapi)
 
-* [翻译](/translate)
+* [Перевод](/translate)
