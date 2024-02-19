@@ -4,7 +4,7 @@
   "description": "A shadowsocks manager tool for multi user and traffic control.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node server.js -c default.yml",
     "build": "gulp",
     "prepare": "gulp",
     "prepublishOnly": "gulp",

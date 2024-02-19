@@ -27,8 +27,8 @@
     <md-card>
         <md-card-header>
             <md-card-header-text>
-                <span class="md-title" translate>
-                    邀请码
+                <span class="md-title">
+                    Код приглашения
                 </span>
             </md-card-header-text>
         </md-card-header>
@@ -36,7 +36,7 @@
             <md-list>
                 <md-divider></md-divider>
                 <md-list-item>
-                    <div flex>没有可用的邀请码</div>
+                    <div flex>Нет доступного кода приглашения</div>
                 </md-list-item>
                 <md-divider></md-divider>
             </md-list>
@@ -50,7 +50,7 @@
                             <span hide-xs style="font-size: 0.8em; color: #666">{{ getRefUrl(c.code) }}</span>
                             <span hide-gt-xs>{{ c.code }}</span>
                             <md-button class="md-primary" ngclipboard data-clipboard-text="{{ getRefUrl(c.code) }}"
-                                       ngclipboard-success="clipboardSuccess(e);">{{ '复制链接' | translate }}
+                                       ngclipboard-success="clipboardSuccess(e);">Копировать ссылку
                             </md-button>
                         </div>
                         <div>{{ c.count }} / {{ c.maxUser }}</div>
@@ -65,8 +65,8 @@
     <md-card>
         <md-card-header>
             <md-card-header-text>
-                <span class="md-title" translate>
-                    已邀请用户
+                <span class="md-title">
+                    Пользователь приглашен
                 </span>
             </md-card-header-text>
         </md-card-header>
@@ -74,7 +74,7 @@
             <md-list>
                 <md-divider></md-divider>
                 <md-list-item>
-                    <div flex translate>当前没有邀请用户</div>
+                    <div flex>В настоящее время ни один пользователь не приглашен</div>
                 </md-list-item>
                 <md-divider></md-divider>
             </md-list>

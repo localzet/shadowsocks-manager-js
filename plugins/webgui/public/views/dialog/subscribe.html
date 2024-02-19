@@ -30,7 +30,7 @@
                 <div style="word-wrap: break-word; color: #666; font-size: 0.8em; max-width: 480px; height: 55px;">
                     {{ publicInfo.subscribeLink }}
                 </div>
-                <div style="margin-top: 15px; margin-bottom: 15px;" translate>请选择订阅链接类型：</div>
+                <div style="margin-top: 15px; margin-bottom: 15px;" translate>Пожалуйста, выберите тип ссылки на подписку：</div>
                 <md-radio-group ng-model="publicInfo.linkType" layout="row" layout-wrap layout-align="start center"
                                 ng-change="{{ changeLinkType() }}">
                     <md-radio-button ng-repeat="type in publicInfo.types" value="{{ type }}">
@@ -38,30 +38,30 @@
                     </md-radio-button>
                 </md-radio-group>
                 <md-checkbox style="margin-top: 15px;" ng-model="publicInfo.ip" ng-change="changeLinkType()"
-                             ng-true-value="1" ng-false-value="0">{{ '将域名转换为IP地址' | translate }}
+                             ng-true-value="1" ng-false-value="0">Преобразование доменного имени в IP-адрес
                 </md-checkbox>
                 <md-checkbox ng-model="publicInfo.flow" ng-change="changeLinkType()" ng-true-value="1"
-                             ng-false-value="0">{{ '显示流量信息' | translate }}
+                             ng-false-value="0">Показать информацию о трафике
                 </md-checkbox>
                 <md-dialog-actions layout="row" layout-align="center center" style="margin-top: 25px;">
                     <md-button class="md-primary" ngclipboard data-clipboard-text="{{ publicInfo.subscribeLink }}"
                                ngclipboard-success="toast(e);">
-                        复制链接
+                        Копировать ссылку
                     </md-button>
                     <md-button ng-if="publicInfo.userType === 'user'" class="md-primary"
                                ng-click="publicInfo.toUpdateSubscribePage()">
-                        更换链接
+                        Изменить ссылку
                     </md-button>
                 </md-dialog-actions>
             </div>
             <div ng-if="publicInfo.updateSubscribePage">
-                若更换链接，原有的订阅链接将失效，是否继续？
+                Если вы измените ссылку, исходная ссылка на подписку станет недействительной. Продолжить?
                 <md-dialog-actions layout="row" layout-align="center center" style="margin-top: 25px;">
                     <md-button class="md-primary" ng-click="publicInfo.updateSubscribePage = false">
-                        取消
+                        Отмена
                     </md-button>
                     <md-button class="md-primary" ng-click="publicInfo.updateLink()">
-                        继续
+                        Продолжить
                     </md-button>
                 </md-dialog-actions>
             </div>

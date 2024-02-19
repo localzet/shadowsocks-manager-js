@@ -27,10 +27,10 @@
     <div flex="100">
         <md-card flex="100">
             <md-card-title>
-                <md-card-title-text><span class="md-headline">{{ '公告' | translate }}</span></md-card-title-text>
+                <md-card-title-text><span class="md-headline">Объявления</span></md-card-title-text>
             </md-card-title>
             <md-card-content>
-                <div ng-show="notices.length === 0">{{ '暂无公告' | translate }}</div>
+                <div ng-show="notices.length === 0">Пока нет объявлений</div>
                 <md-list ng-show="notices.length > 0">
                     <md-divider></md-divider>
                     <md-list-item ng-repeat-start="notice in notices" ng-click="showNotice(notice)">

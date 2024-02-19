@@ -30,19 +30,19 @@
         <div flex layout="column" layout-align="space-around stretch">
             <form name="userForm">
                 <md-input-container class="md-block">
-                    <label>{{ '邮箱' | translate }}</label>
+                    <label>Почта</label>
                     <input type="email" required name="email" ng-model="user.email">
                     <div ng-messages="userForm.email.$error">
-                        <div ng-message="required">{{ '邮箱不能为空' | translate }}</div>
-                        <div ng-message="email">{{ '必须填写一个有效邮箱地址' | translate }}</div>
+                        <div ng-message="required">E-mail не может быть пустым</div>
+                        <div ng-message="email">Требуется действительный адрес электронной почты</div>
                     </div>
                 </md-input-container>
                 <div layout="row">
                     <md-input-container class="md-block" flex="65">
-                        <label>{{ '验证码' | translate }}</label>
+                        <label>Проверочный код</label>
                         <input type="text" required name="code" ng-model="user.code">
                         <div ng-messages="userForm.code.$error">
-                            <div ng-message="required">{{ '验证码不能为空' | translate }}</div>
+                            <div ng-message="required">Код подтверждения должен быть заполнен</div>
                         </div>
                     </md-input-container>
                     <div flex layout="row" layout-align="space-between center">
@@ -50,18 +50,18 @@
                         <div style="margin-bottom: 25px;">
                             <md-button class="md-primary" ng-disabled="sendCodeTime || !user.email"
                                        ng-click="sendCode()" aria-label="send code"><span
-                                    ng-if="sendCodeTime === 0">{{ '发送验证码' | translate }}</span><span
-                                    ng-if="sendCodeTime > 0">{{ '已发送' | translate }}({{sendCodeTime}})</span>
+                                    ng-if="sendCodeTime === 0">Отправить код подтверждения</span><span
+                                    ng-if="sendCodeTime > 0">Был отправлен ({{sendCodeTime}})</span>
                             </md-button>
                         </div>
                     </div>
                 </div>
                 <div layout="row">
                     <md-input-container class="md-block" flex="65">
-                        <label>{{ '密码' | translate }}</label>
+                        <label>Пароль</label>
                         <input type="password" required name="password" ng-model="user.password">
                         <div ng-messages="userForm.password.$error">
-                            <div ng-message="required">{{ '密码不能为空' | translate }}</div>
+                            <div ng-message="required">Пароль не может быть пустым</div>
                         </div>
                     </md-input-container>
                     <div flex layout="row" layout-align="space-between center">
@@ -69,14 +69,14 @@
                         <div style="margin-bottom: 25px;">
                             <md-button class="md-raised md-primary"
                                        ng-disabled="!user.email || !user.code || !user.password" ng-click="signup()">
-                                {{ '注册' | translate }}
+                                Регистр
                             </md-button>
                         </div>
                     </div>
                 </div>
                 <div layout="row" ng-if="home.refInput">
                     <md-input-container class="md-block" flex="100">
-                        <label>{{ '邀请码' | translate }}</label>
+                        <label>Код приглашения</label>
                         <input type="text" name="refId" ng-model="home.refInputCode">
                     </md-input-container>
                 </div>
@@ -88,7 +88,7 @@
         <div flex="10" flex-gt-sm="30"></div>
         <div flex>
             <div layout="row" layout-align="center center">
-                <div style="color: #bbb;">{{ '邀请码' | translate }} [{{ home.refId }}] {{ '无效' | translate }}</div>
+                <div style="color: #bbb;">Код приглашения [{{ home.refId }}] неверный</div>
             </div>
         </div>
         <div flex="10" flex-gt-sm="30"></div>
@@ -110,19 +110,19 @@
                         <div flex layout="column" layout-align="space-around stretch">
                             <form name="userForm">
                                 <md-input-container class="md-block">
-                                    <label>{{ '邮箱' | translate }}</label>
+                                    <label>Почта</label>
                                     <input type="email" required name="email" ng-model="user.email">
                                     <div ng-messages="userForm.email.$error">
-                                        <div ng-message="required">{{ '邮箱不能为空' | translate }}</div>
-                                        <div ng-message="email">{{ '必须填写一个有效邮箱地址' | translate }}</div>
+                                        <div ng-message="required">E-mail не может быть пустым</div>
+                                        <div ng-message="email">Требуется действительный адрес электронной почты</div>
                                     </div>
                                 </md-input-container>
                                 <div layout="row">
                                     <md-input-container class="md-block" flex="65">
-                                        <label>{{ '验证码' | translate }}</label>
+                                        <label>Проверочный код</label>
                                         <input type="text" required name="code" ng-model="user.code">
                                         <div ng-messages="userForm.code.$error">
-                                            <div ng-message="required">{{ '验证码不能为空' | translate }}</div>
+                                            <div ng-message="required">Код подтверждения должен быть заполнен</div>
                                         </div>
                                     </md-input-container>
                                     <div flex layout="row" layout-align="space-between center">
@@ -130,18 +130,18 @@
                                         <div style="margin-bottom: 25px;">
                                             <md-button class="md-primary" ng-disabled="sendCodeTime || !user.email"
                                                        ng-click="sendCode()" aria-label="send code"><span
-                                                    ng-if="sendCodeTime === 0">{{ '发送验证码' | translate
-                                                }}</span><span ng-if="sendCodeTime > 0">{{ '已发送' | translate
-                                                }}({{sendCodeTime}})</span></md-button>
+                                                    ng-if="sendCodeTime === 0">Отправить код подтверждения</span>
+                                                <span ng-if="sendCodeTime > 0">Был отправлен ({{sendCodeTime}})</span>
+                                            </md-button>
                                         </div>
                                     </div>
                                 </div>
                                 <div layout="row">
                                     <md-input-container class="md-block" flex="65">
-                                        <label>{{ '密码' | translate }}</label>
+                                        <label>Пароль</label>
                                         <input type="password" required name="password" ng-model="user.password">
                                         <div ng-messages="userForm.password.$error">
-                                            <div ng-message="required">{{ '密码不能为空' | translate }}</div>
+                                            <div ng-message="required">Пароль не может быть пустым</div>
                                         </div>
                                     </md-input-container>
                                     <div flex layout="row" layout-align="space-between center">
@@ -149,7 +149,7 @@
                                         <div style="margin-bottom: 25px;">
                                             <md-button class="md-raised md-primary"
                                                        ng-disabled="!user.email || !user.code || !user.password"
-                                                       ng-click="signup()">{{ '注册' | translate }}
+                                                       ng-click="signup()">Регистр
                                             </md-button>
                                         </div>
                                     </div>
@@ -168,7 +168,7 @@
         <div flex="25"></div>
         <md-card flex="50">
             <md-card-content layout="row" layout-align="center center">
-                <div style="color: #bbb;">{{ '邀请码' | translate }} [{{ home.refId }}] {{ '无效' | translate }}</div>
+                <div style="color: #bbb;">Код приглашения [{{ home.refId }}] неверный</div>
             </md-card-content>
         </md-card>
         <div flex="25"></div>
@@ -178,7 +178,7 @@
         <md-card flex="50">
             <md-card-content layout="row" layout-align="center center">
                 <md-input-container class="md-block" flex="100">
-                    <label>{{ '邀请码' | translate }}</label>
+                    <label>Код приглашения</label>
                     <input type="text" name="refId" ng-model="home.refInputCode">
                 </md-input-container>
             </md-card-content>

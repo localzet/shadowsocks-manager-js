@@ -31,22 +31,22 @@
             <div style="height: 30px;"></div>
             <form name="groupForm">
                 <md-input-container class="md-block">
-                    <label translate>名称</label>
+                    <label>Имя</label>
                     <input type="text" required name="name" ng-model="group.name">
                     <div ng-messages="groupForm.name.$error">
-                        <div ng-message="required" translate>不能名称为空</div>
+                        <div ng-message="required">Имя не может быть пустым</div>
                     </div>
                 </md-input-container>
                 <md-input-container class="md-block">
-                    <label translate>备注</label>
+                    <label>Примечания</label>
                     <input type="text" required name="comment" ng-model="group.comment">
                     <div ng-messages="groupForm.comment.$error">
-                        <div ng-message="required" translate>备注不能为空</div>
+                        <div ng-message="required">Примечания не могут быть пустыми</div>
                     </div>
                 </md-input-container>
             </form>
             <div style="width: 100%;" layout="row" layout-align="space-between center">
-                <div flex="75" translate>允许购买多个账号</div>
+                <div flex="75">Позволяет приобрести несколько аккаунтов</div>
                 <div flex layout="row" layout-align="end center">
                     <md-switch ng-model="group.multiAccount" aria-label="multiAccount" ng-true-value="1"
                                ng-false-value="0">
@@ -56,8 +56,8 @@
             <md-divider></md-divider>
             <div style="width: 100%; height: 52px;" layout="row" layout-align="space-between center"
                  ng-click="setGroupNotice()">
-                <div flex="75" translate>
-                    <span translate>公告</span>
+                <div flex="75">
+                    <span>Объявления</span>
                 </div>
                 <div flex layout="row" layout-align="end center">
                     <md-button class="md-icon-button">
@@ -68,8 +68,8 @@
             <md-divider></md-divider>
             <div style="width: 100%; height: 52px;" layout="row" layout-align="space-between center"
                  ng-click="setGroupOrder()">
-                <div flex="75" translate>
-                    <span translate>订单</span>
+                <div flex="75">
+                    <span>Заказ</span>
                 </div>
                 <div flex layout="row" layout-align="end center">
                     <md-button class="md-icon-button">
@@ -86,10 +86,10 @@
         <div flex layout="row" layout-align="center start">
             <div flex="10" flex-gt-sm="30"></div>
             <div layout="row" flex layout-align="space-around center">
-                <md-button class="md-primary" ng-click="cancel()"><span translate>取消</span></md-button>
-                <md-button class="md-warn" ng-click="delete()" ng-disabled="groupId === 0"><span translate>删除</span>
+                <md-button class="md-primary" ng-click="cancel()"><span>Отмена</span></md-button>
+                <md-button class="md-warn" ng-click="delete()" ng-disabled="groupId === 0"><span>Удалить</span>
                 </md-button>
-                <md-button class="md-raised md-primary" ng-click="confirm()"><span translate>确认</span></md-button>
+                <md-button class="md-raised md-primary" ng-click="confirm()"><span>Подтвердить</span></md-button>
             </div>
             <div flex="10" flex-gt-sm="30"></div>
         </div>
