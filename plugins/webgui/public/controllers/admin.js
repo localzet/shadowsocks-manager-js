@@ -1,3 +1,28 @@
+/*
+ * @package     ShadosSocks Manager
+ * @link        https://github.com/localzet/shadowsocks-manager-js
+ * @link        https://github.com/shadowsocks/shadowsocks-manager
+ *
+ * @author      Ivan Zorin <creator@localzet.com>
+ * @copyright   Copyright (c) 2018-2024 Zorin Projects S.P.
+ * @license     https://www.gnu.org/licenses/agpl-3.0 GNU Affero General Public License v3.0
+ *
+ *              This program is free software: you can redistribute it and/or modify
+ *              it under the terms of the GNU Affero General Public License as published
+ *              by the Free Software Foundation, either version 3 of the License, or
+ *              (at your option) any later version.
+ *
+ *              This program is distributed in the hope that it will be useful,
+ *              but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *              MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *              GNU Affero General Public License for more details.
+ *
+ *              You should have received a copy of the GNU Affero General Public License
+ *              along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ *              For any questions, please contact <creator@localzet.com>
+ */
+
 const app = angular.module('app');
 
 app.controller('AdminController', ['$scope', '$mdMedia', '$mdSidenav', '$state', '$http', '$document', '$interval', '$timeout', '$localStorage', 'configManager',
@@ -26,35 +51,35 @@ app.controller('AdminController', ['$scope', '$mdMedia', '$mdSidenav', '$state',
       }
     };
     $scope.menus = [{
-      name: '首页',
+      name: 'Главная',
       icon: 'home',
       click: 'admin.index',
     }, {
-      name: '服务器',
+      name: 'Сервера',
       icon: 'cloud',
       click: 'admin.server',
       hide: !!($scope.id !== 1),
     }, {
-      name: '用户',
+      name: 'Клиенты',
       icon: 'people',
       click: 'admin.user',
     }, {
-      name: '账号',
+      name: 'Аккаунты',
       icon: 'account_circle',
       click: 'admin.account',
     }, {
-      name: '订单',
+      name: 'Заказы',
       icon: 'attach_money',
       click: 'admin.pay',
       hide: !($scope.config.paypal || $scope.config.giftcard || $scope.config.refCode || $scope.config.alipay),
     }, {
-      name: '设置',
+      name: 'Настройки',
       icon: 'settings',
       click: 'admin.settings',
     }, {
       name: 'divider',
     }, {
-      name: '退出',
+      name: 'Выйти',
       icon: 'exit_to_app',
       click: function() {
         $http.post('/api/home/logout').then(() => {
@@ -183,7 +208,7 @@ app.controller('AdminController', ['$scope', '$mdMedia', '$mdSidenav', '$state',
 ])
 .controller('AdminIndexController', ['$scope', '$state', 'adminApi', '$localStorage', '$interval', 'orderDialog',
   ($scope, $state, adminApi, $localStorage, $interval, orderDialog) => {
-    $scope.setTitle('首页');
+    $scope.setTitle('Главная');
     if($localStorage.admin.indexInfo) {
       $scope.signupUsers = $localStorage.admin.indexInfo.data.signup;
       $scope.loginUsers = $localStorage.admin.indexInfo.data.login;
@@ -245,7 +270,7 @@ app.controller('AdminController', ['$scope', '$mdMedia', '$mdSidenav', '$state',
   }
 ])
 .controller('AdminRecentSignupController', ['$scope', '$http', '$state', ($scope, $http, $state) => {
-  $scope.setTitle('最新注册用户');
+  $scope.setTitle('Последний зарегистрированный пользователь');
   $scope.setMenuButton('arrow_back', 'admin.index');
   $scope.recentUsers = null;
   $http.get('/api/admin/user/recentSignup?number=100').then(success => {
@@ -256,7 +281,7 @@ app.controller('AdminController', ['$scope', '$mdMedia', '$mdSidenav', '$state',
   };
 }])
 .controller('AdminRecentLoginController', ['$scope', '$http', '$state', ($scope, $http, $state) => {
-  $scope.setTitle('最近登录用户');
+  $scope.setTitle('Недавно вошедшие пользователи');
   $scope.setMenuButton('arrow_back', 'admin.index');
   $scope.recentUsers = null;
   $http.get('/api/admin/user/recentLogin?number=-1').then(success => {
@@ -267,7 +292,7 @@ app.controller('AdminController', ['$scope', '$mdMedia', '$mdSidenav', '$state',
   };
 }])
 .controller('AdminTopFlowController', ['$scope', '$http', '$state', ($scope, $http, $state) => {
-  $scope.setTitle('今日流量排行');
+  $scope.setTitle('Сегодняшний рейтинг трафика');
   $scope.setMenuButton('arrow_back', 'admin.index');
   $scope.topUsers = null;
   $scope.allFlow = 0;
@@ -287,7 +312,7 @@ app.controller('AdminController', ['$scope', '$mdMedia', '$mdSidenav', '$state',
 }])
 .controller('AdminPayController', ['$scope', 'adminApi', 'orderDialog', '$mdMedia', '$localStorage', 'orderFilterDialog', '$timeout', '$state', '$stateParams',
   ($scope, adminApi, orderDialog, $mdMedia, $localStorage, orderFilterDialog, $timeout, $state, $stateParams) => {
-    $scope.setTitle('订单');
+    $scope.setTitle('Заказ');
     $scope.setMenuSearchButton('search');
     $scope.showOrderInfo = order => {
       orderDialog.show(order);
@@ -295,10 +320,10 @@ app.controller('AdminController', ['$scope', '$mdMedia', '$mdSidenav', '$state',
     $scope.myPayType = '';
     let tabSwitchTime = 0;
     $scope.payTypes = [];
-    if($scope.config.alipay) { $scope.payTypes.push({ name: '支付宝' }); }
+    if($scope.config.alipay) { $scope.payTypes.push({ name: 'Alipay' }); }
     if($scope.config.paypal) { $scope.payTypes.push({ name: 'Paypal' }); }
-    if($scope.config.giftcard) { $scope.payTypes.push({ name: '充值码' }); }
-    if($scope.config.refCode) { $scope.payTypes.push({ name: '邀请码' }); }
+    if($scope.config.giftcard) { $scope.payTypes.push({ name: 'Код пополнения' }); }
+    if($scope.config.refCode) { $scope.payTypes.push({ name: 'Код приглашения' }); }
     if($scope.payTypes.length) {
       $scope.myPayType = $stateParams.myPayType || $scope.payTypes[0].name;
       $scope.defaultTabIndex = 0;

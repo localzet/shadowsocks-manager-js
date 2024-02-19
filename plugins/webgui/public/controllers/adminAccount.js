@@ -1,8 +1,33 @@
+/*
+ * @package     ShadosSocks Manager
+ * @link        https://github.com/localzet/shadowsocks-manager-js
+ * @link        https://github.com/shadowsocks/shadowsocks-manager
+ *
+ * @author      Ivan Zorin <creator@localzet.com>
+ * @copyright   Copyright (c) 2018-2024 Zorin Projects S.P.
+ * @license     https://www.gnu.org/licenses/agpl-3.0 GNU Affero General Public License v3.0
+ *
+ *              This program is free software: you can redistribute it and/or modify
+ *              it under the terms of the GNU Affero General Public License as published
+ *              by the Free Software Foundation, either version 3 of the License, or
+ *              (at your option) any later version.
+ *
+ *              This program is distributed in the hope that it will be useful,
+ *              but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *              MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *              GNU Affero General Public License for more details.
+ *
+ *              You should have received a copy of the GNU Affero General Public License
+ *              along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ *              For any questions, please contact <creator@localzet.com>
+ */
+
 const app = angular.module('app');
 
 app.controller('AdminAccountController', ['$scope', '$state', '$mdMedia', '$http', 'accountSortDialog','$timeout', 'adminApi', '$localStorage',
   ($scope, $state, $mdMedia, $http, accountSortDialog, $timeout, adminApi, $localStorage) => {
-    $scope.setTitle('账号');
+    $scope.setTitle('Аккаунт');
     $scope.setMenuRightButton('sort_by_alpha');
     $scope.setMenuSearchButton('search');
     if(!$localStorage.admin.accountFilterSettings) {
@@ -125,7 +150,7 @@ app.controller('AdminAccountController', ['$scope', '$state', '$mdMedia', '$http
 ])
 .controller('AdminAccountPageController', ['$scope', '$state', '$stateParams', '$http', '$mdMedia', '$q', 'adminApi', '$timeout', '$interval', 'qrcodeDialog', 'ipDialog', '$mdBottomSheet', 'wireGuardConfigDialog', '$filter', 'subscribeDialog',
   ($scope, $state, $stateParams, $http, $mdMedia, $q, adminApi, $timeout, $interval, qrcodeDialog, ipDialog, $mdBottomSheet, wireGuardConfigDialog, $filter, subscribeDialog) => {
-    $scope.setTitle('账号');
+    $scope.setTitle('Аккаунт');
     $scope.setMenuButton('arrow_back', 'admin.account');
     $scope.accountId = +$stateParams.accountId;
     $scope.account = { port: '...' };
@@ -428,7 +453,7 @@ app.controller('AdminAccountController', ['$scope', '$state', '$mdMedia', '$http
       });
     };
     $scope.clipboardSuccess = event => {
-      $scope.toast($filter('translate')('二维码链接已复制到剪贴板'));
+      $scope.toast($filter('translate')('Ссылка на QR-код скопирована в буфер обмена.'));
     };
     $scope.isWG = server => server.type === 'WireGuard';
     $scope.isSS = server => server.type === 'Shadowsocks';
@@ -443,7 +468,7 @@ app.controller('AdminAccountController', ['$scope', '$state', '$mdMedia', '$http
 ])
 .controller('AdminAddAccountController', ['$scope', '$state', '$http', '$mdBottomSheet', 'alertDialog', '$filter', 'setAccountServerDialog',
   ($scope, $state, $http, $mdBottomSheet, alertDialog, $filter, setAccountServerDialog) => {
-    $scope.setTitle('添加账号');
+    $scope.setTitle('Добавить аккаунт');
     $scope.setMenuButton('arrow_back', 'admin.account');
     $http.get('/api/admin/order').then(success => {
       $scope.orders = success.data.filter(f => !f.baseId);
@@ -459,11 +484,11 @@ app.controller('AdminAccountController', ['$scope', '$state', '$mdMedia', '$http
       $scope.account.password = getRandomPassword(10);
     });
     $scope.typeList = [
-      {key: '不限量', value: 1},
-      {key: '月', value: 3},
-      {key: '周', value: 2},
-      {key: '天', value: 4},
-      {key: '小时', value: 5},
+      {key: 'Безлимитный', value: 1},
+      {key: 'Месяц', value: 3},
+      {key: 'Неделя', value: 2},
+      {key: 'День', value: 4},
+      {key: 'Час', value: 5},
     ];
     $scope.timeLimit = {
       '2': 7 * 24 * 3600000,
@@ -540,10 +565,10 @@ app.controller('AdminAccountController', ['$scope', '$state', '$mdMedia', '$http
         server: $scope.account.server,
         user: $scope.account.user,
       }).then(success => {
-        alertDialog.show('添加账号成功', '确定');
+        alertDialog.show('Аккаунт успешно добавлен', 'Ура!');
         $state.go('admin.accountPage', { accountId: success.data.id });
       }).catch(() => {
-        alertDialog.show('添加账号失败', '确定');
+        alertDialog.show('Не удалось добавить аккаунт', 'Да ёб...');
       });
     };
     $scope.pickTime = () => {
@@ -593,16 +618,16 @@ app.controller('AdminAccountController', ['$scope', '$state', '$mdMedia', '$http
 ])
 .controller('AdminEditAccountController', ['$scope', '$state', '$stateParams', '$http', '$mdBottomSheet', 'confirmDialog', 'alertDialog', '$filter', '$q', 'setAccountServerDialog',
   ($scope, $state, $stateParams, $http, $mdBottomSheet, confirmDialog, alertDialog, $filter, $q, setAccountServerDialog) => {
-    $scope.setTitle('编辑账号');
+    $scope.setTitle('Редактировать аккаунт');
     $scope.setMenuButton('arrow_back', function() {
       $state.go('admin.accountPage', { accountId: $stateParams.accountId });
     });
     $scope.typeList = [
-      {key: '不限量', value: 1},
-      {key: '月', value: 3},
-      {key: '周', value: 2},
-      {key: '天', value: 4},
-      {key: '小时', value: 5},
+      {key: 'Безлимитный', value: 1},
+      {key: 'Месяц', value: 3},
+      {key: 'Неделя', value: 2},
+      {key: 'День', value: 4},
+      {key: 'Час', value: 5},
     ];
     $scope.timeLimit = {
       '2': 7 * 24 * 3600000,
@@ -721,10 +746,10 @@ app.controller('AdminAccountController', ['$scope', '$state', '$mdMedia', '$http
         multiServerFlow: $scope.account.multiServerFlow ? 1 : 0,
         server: $scope.account.server,
       }).then(success => {
-        alertDialog.show('修改账号成功', '确定');
+        alertDialog.show('Аккаунт успешно изменен', 'Ура!');
         $state.go('admin.accountPage', { accountId: $stateParams.accountId });
       }).catch(() => {
-        alertDialog.show('修改账号失败', '确定');
+        alertDialog.show('Не удалось изменить учетную запись', 'Да ёб..');
       });
     };
     $scope.pickTime = () => {
@@ -748,10 +773,10 @@ app.controller('AdminAccountController', ['$scope', '$state', '$mdMedia', '$http
     };
     $scope.deleteAccount = () => {
       confirmDialog.show({
-        text: '真的要删除账号吗？',
-        cancel: '取消',
-        confirm: '删除',
-        error: '删除账号失败',
+        text: 'Вы действительно хотите удалить свою учетную запись?',
+        cancel: 'Отмена',
+        confirm: 'Удалить',
+        error: 'Не удалось удалить аккаунт',
         fn: function () { return $http.delete('/api/admin/account/' + accountId); },
       }).then(() => {
         $state.go('admin.account');

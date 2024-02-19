@@ -1,41 +1,66 @@
+/*
+ * @package     ShadosSocks Manager
+ * @link        https://github.com/localzet/shadowsocks-manager-js
+ * @link        https://github.com/shadowsocks/shadowsocks-manager
+ *
+ * @author      Ivan Zorin <creator@localzet.com>
+ * @copyright   Copyright (c) 2018-2024 Zorin Projects S.P.
+ * @license     https://www.gnu.org/licenses/agpl-3.0 GNU Affero General Public License v3.0
+ *
+ *              This program is free software: you can redistribute it and/or modify
+ *              it under the terms of the GNU Affero General Public License as published
+ *              by the Free Software Foundation, either version 3 of the License, or
+ *              (at your option) any later version.
+ *
+ *              This program is distributed in the hope that it will be useful,
+ *              but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *              MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *              GNU Affero General Public License for more details.
+ *
+ *              You should have received a copy of the GNU Affero General Public License
+ *              along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ *              For any questions, please contact <creator@localzet.com>
+ */
+
 const app = angular.module('app');
 
 app.controller('AdminSettingsController', ['$scope', '$state',
   ($scope, $state) => {
-    $scope.setTitle('设置');
+    $scope.setTitle('Настройки');
     $scope.toSetting = path => { $state.go(path); };
     if($scope.id === 1) {
       $scope.settingList = [
         {
-          name: '基本设置',
+          name: 'Основные',
           to: 'admin.baseSetting',
         },
         {
-          name: '公告管理',
+          name: 'Объявления',
           to: 'admin.notice',
         },
         {
-          name: '群组管理',
+          name: 'Группы',
           to: 'admin.groupSetting',
         },
         {
-          name: '订单设置',
+          name: 'Заказы',
           to: 'admin.order',
         },
         {
-          name: '邮件设置',
+          name: 'Почта',
           to: 'admin.mailSetting',
         },
         {
-          name: '账号设置',
+          name: 'Аккаунты',
           to: 'admin.accountSetting',
         },
         {
-          name: '修改密码',
+          name: 'Пароль',
           to: 'admin.passwordSetting',
         },
         {
-          name: '邀请码',
+          name: 'Партнерка',
           to: 'admin.refSetting',
         },
       ];
@@ -47,18 +72,18 @@ app.controller('AdminSettingsController', ['$scope', '$state',
       };
       if($scope.config.giftcard) {
         $scope.settingList.push({
-          name: '充值码',
+          name: 'Подарки',
           to: 'admin.listGiftCardBatch',
         });
       };
     } else {
       $scope.settingList = [
         {
-          name: '邀请码',
+          name: 'Партнерка',
           to: 'admin.refSetting',
         },
         {
-          name: '修改密码',
+          name: 'Пароль',
           to: 'admin.passwordSetting',
         },
       ];
