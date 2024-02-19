@@ -37,19 +37,23 @@
                         <form name="refForm">
                             <md-divider></md-divider>
                             <md-list-item>
-                                <div class="md-list-item-text" style="width: 100%;" layout="row" layout-align="space-between center">
+                                <div class="md-list-item-text" style="width: 100%;" layout="row"
+                                     layout-align="space-between center">
                                     <div flex="75" translate>启用邀请码功能</div>
                                     <div flex layout="row" layout-align="end center">
-                                        <md-switch ng-model="refSetting.useRef" aria-label="useRef" ng-disabled="id !== 1"></md-switch>
+                                        <md-switch ng-model="refSetting.useRef" aria-label="useRef"
+                                                   ng-disabled="id !== 1"></md-switch>
                                     </div>
                                 </div>
                             </md-list-item>
                             <md-divider></md-divider>
                             <md-list-item ng-show="refSetting.useRef && id === 1">
-                                <div class="md-list-item-text" style="width: 100%;" layout="row" layout-align="space-between center">
+                                <div class="md-list-item-text" style="width: 100%;" layout="row"
+                                     layout-align="space-between center">
                                     <div flex="75" translate>关闭注册时仍可使用邀请码</div>
                                     <div flex layout="row" layout-align="end center">
-                                        <md-switch ng-model="refSetting.useWhenSignupClose" aria-label="useWhenSignupClose"></md-switch>
+                                        <md-switch ng-model="refSetting.useWhenSignupClose"
+                                                   aria-label="useWhenSignupClose"></md-switch>
                                     </div>
                                 </div>
                             </md-list-item>
@@ -64,7 +68,8 @@
                             <md-list-item ng-show="refSetting.useRef && id === 1">
                                 <md-input-container class="md-block" style="margin-bottom: -15px; width: 100%;">
                                     <label translate>每个邀请码可邀请的用户数</label>
-                                    <input type="number" required name="refUserNumber" ng-model="refSetting.refUserNumber">
+                                    <input type="number" required name="refUserNumber"
+                                           ng-model="refSetting.refUserNumber">
                                 </md-input-container>
                             </md-list-item>
                             <md-divider ng-show="refSetting.useRef && id === 1"></md-divider>

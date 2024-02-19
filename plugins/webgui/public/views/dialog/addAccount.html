@@ -90,13 +90,15 @@
                 <md-input-container class="md-block" style="height: 54px;">
                     <label>端口</label>
                     <md-select ng-model="publicInfo.mac.account">
-                        <md-option ng-value="account.id" ng-repeat="account in publicInfo.account">{{ account.port }}</md-option>
+                        <md-option ng-value="account.id" ng-repeat="account in publicInfo.account">{{ account.port }}
+                        </md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container class="md-block" style="height: 54px;">
                     <label>服务器</label>
                     <md-select ng-model="publicInfo.mac.server">
-                        <md-option ng-value="server.id" ng-repeat="server in publicInfo.validServer">{{ server.name }}</md-option>
+                        <md-option ng-value="server.id" ng-repeat="server in publicInfo.validServer">{{ server.name }}
+                        </md-option>
                     </md-select>
                 </md-input-container>
             </div>
@@ -105,7 +107,8 @@
             <md-button ng-click="publicInfo.hide()">
                 关闭
             </md-button>
-            <md-button class="md-primary" ng-click="publicInfo.setMac()" ng-disabled="!publicInfo.isMacAddress(publicInfo.mac.macAddress)">
+            <md-button class="md-primary" ng-click="publicInfo.setMac()"
+                       ng-disabled="!publicInfo.isMacAddress(publicInfo.mac.macAddress)">
                 确定
             </md-button>
         </md-dialog-actions>
@@ -128,7 +131,8 @@
             <md-button ng-click="publicInfo.hide()">
                 关闭
             </md-button>
-            <md-button class="md-primary" ng-click="publicInfo.status = 'giftcardCode'" ng-disabled="!publicInfo.giftcardAccountId">
+            <md-button class="md-primary" ng-click="publicInfo.status = 'giftcardCode'"
+                       ng-disabled="!publicInfo.giftcardAccountId">
                 确定
             </md-button>
         </md-dialog-actions>
@@ -168,7 +172,8 @@
             <md-button ng-click="publicInfo.hide()">
                 关闭
             </md-button>
-            <md-button class="md-primary" ng-click="publicInfo.addRefCodeForUser()" ng-disabled="!publicInfo.refCodeNumber || !publicInfo.refUserNumber">
+            <md-button class="md-primary" ng-click="publicInfo.addRefCodeForUser()"
+                       ng-disabled="!publicInfo.refCodeNumber || !publicInfo.refUserNumber">
                 确定
             </md-button>
         </md-dialog-actions>
@@ -183,13 +188,15 @@
                 <md-input-container class="md-block" style="height: 54px;">
                     <label>端口</label>
                     <md-select ng-model="publicInfo.mac.account">
-                        <md-option ng-value="account.id" ng-repeat="account in publicInfo.account">{{ account.port }}</md-option>
+                        <md-option ng-value="account.id" ng-repeat="account in publicInfo.account">{{ account.port }}
+                        </md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container class="md-block" style="height: 54px;">
                     <label>服务器</label>
                     <md-select ng-model="publicInfo.mac.server">
-                        <md-option ng-value="server.id" ng-repeat="server in publicInfo.validServer">{{ server.name }}</md-option>
+                        <md-option ng-value="server.id" ng-repeat="server in publicInfo.validServer">{{ server.name }}
+                        </md-option>
                     </md-select>
                 </md-input-container>
             </div>

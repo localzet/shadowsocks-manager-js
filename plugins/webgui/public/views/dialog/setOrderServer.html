@@ -35,7 +35,8 @@
             </div>
             <div layout="column" layout-warp flex ng-show="publicInfo.order.orderServer">
                 <md-divider></md-divider>
-                <div flex="60" layout-align="space-between center" layout="row" ng-repeat-start="server in publicInfo.servers">
+                <div flex="60" layout-align="space-between center" layout="row"
+                     ng-repeat-start="server in publicInfo.servers">
                     <md-checkbox style="top: 8px;" ng-model="publicInfo.serverObj[server.id]">
                         <div>{{ server.name }}</div>
                     </md-checkbox>

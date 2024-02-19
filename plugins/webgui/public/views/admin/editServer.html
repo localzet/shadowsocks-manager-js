@@ -85,17 +85,18 @@
                     <label>Trojan端口</label>
                     <input type="number" required name="tjPort" ng-model="server.tjPort">
                 </md-input-container>
-                <div ng-if="server.type === 'Shadowsocks'" class="md-block" layout="column" layout-align="center stretch" style="margin-bottom: 25px;">
+                <div ng-if="server.type === 'Shadowsocks'" class="md-block" layout="column"
+                     layout-align="center stretch" style="margin-bottom: 25px;">
                     <label flex style="color: rgba(0,0,0, 0.54); font-size: 13px;" translate>加密方式</label>
                     <md-autocomplete flex
-                        md-selected-item="server.method"
-                        md-items="method in methods"
-                        md-item-text="method"
-                        md-min-length="0"
-                        md-search-text="methodSearch"
-                        md-search-text-change="setMethod()"
-                        md-require-match="false"
-                        placeholder="请填写加密方式">
+                                     md-selected-item="server.method"
+                                     md-items="method in methods"
+                                     md-item-text="method"
+                                     md-min-length="0"
+                                     md-search-text="methodSearch"
+                                     md-search-text-change="setMethod()"
+                                     md-require-match="false"
+                                     placeholder="请填写加密方式">
                         <md-item-template>
                             <span md-highlight-text="methodSearch" md-highlight-flags="^i">{{method}}</span>
                         </md-item-template>
@@ -122,13 +123,13 @@
                 <div style="width: 100%;">
                     <md-chips ng-model="tags" placeholder="请输入标签">
                         <md-autocomplete
-                            md-selected-item="tagsAutoComplete.selectedItem"
-                            md-search-text="tagsAutoComplete.searchText"
-                            md-items="item in tagsAutoComplete.querySearch(tagsAutoComplete.searchText)"
-                            md-item-text="item"
-                            placeholder="请输入标签"
+                                md-selected-item="tagsAutoComplete.selectedItem"
+                                md-search-text="tagsAutoComplete.searchText"
+                                md-items="item in tagsAutoComplete.querySearch(tagsAutoComplete.searchText)"
+                                md-item-text="item"
+                                placeholder="请输入标签"
                         >
-                          <span md-highlight-text="tagsAutoComplete.searchText">{{item}}</span>
+                            <span md-highlight-text="tagsAutoComplete.searchText">{{item}}</span>
                         </md-autocomplete>
                         <md-chip-template>
                             <strong>{{$chip}}</strong>
@@ -138,7 +139,8 @@
                 <div style="width: 100%;" layout="row" layout-align="space-between center">
                     <div flex="75" translate>立即同步所有端口</div>
                     <div flex layout="row" layout-align="end center">
-                        <md-switch ng-model="server.check" aria-label="check" ng-true-value="1" ng-false-value="0"></md-switch>
+                        <md-switch ng-model="server.check" aria-label="check" ng-true-value="1"
+                                   ng-false-value="0"></md-switch>
                     </div>
                 </div>
             </form>
@@ -152,7 +154,8 @@
             <div layout="row" flex layout-align="space-around center">
                 <md-button class="md-primary" ng-click="cancel()"><span translate>取消</span></md-button>
                 <md-button class="md-warn" ng-click="deleteServer()" translate><span translate>删除</span></md-button>
-                <md-button class="md-raised md-primary" ng-click="confirm()" translate><span translate>确认</span></md-button>
+                <md-button class="md-raised md-primary" ng-click="confirm()" translate><span translate>确认</span>
+                </md-button>
             </div>
             <div flex="10" flex-gt-sm="30"></div>
         </div>

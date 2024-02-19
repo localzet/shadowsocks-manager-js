@@ -41,70 +41,70 @@ const isSQLite = typeof config.db === 'string';
 let accountInfo = {};
 
 const updateAccountInfo = async () => {
-  const accounts = await knex('account_plugin').select().where({});
-  accountInfo = {};
-  accounts.forEach(account => {
-    accountInfo[account.port] = account.id;
-  });
-  return;
+    const accounts = await knex('account_plugin').select().where({});
+    accountInfo = {};
+    accounts.forEach(account => {
+        accountInfo[account.port] = account.id;
+    });
+    return;
 };
 
 const saveFlow = async () => {
-  try {
-    const servers = await knex('server').select(['id', 'name', 'host', 'port', 'password', 'shift']);
-    await updateAccountInfo();
-    const saveServerFlow = async server => {
-      const lastestFlow = await knex('saveFlow').select(['time']).where({
-        id: server.id,
-      }).orderBy('time', 'desc').limit(1);
-      if(lastestFlow.length === 0 || Date.now() - lastestFlow[0].time >= time) {
-        const options = {
-          clear: true,
+    try {
+        const servers = await knex('server').select(['id', 'name', 'host', 'port', 'password', 'shift']);
+        await updateAccountInfo();
+        const saveServerFlow = async server => {
+            const lastestFlow = await knex('saveFlow').select(['time']).where({
+                id: server.id,
+            }).orderBy('time', 'desc').limit(1);
+            if (lastestFlow.length === 0 || Date.now() - lastestFlow[0].time >= time) {
+                const options = {
+                    clear: true,
+                };
+                let flow = await manager.send({
+                    command: 'flow',
+                    options,
+                }, {
+                    host: server.host,
+                    port: server.port,
+                    password: server.password,
+                });
+                flow = flow.map(f => {
+                    return {
+                        id: server.id,
+                        accountId: accountInfo[f.port - server.shift] || 0,
+                        port: f.port,
+                        flow: f.sumFlow,
+                        time: Date.now(),
+                    };
+                }).filter(f => {
+                    return f.flow > 0;
+                });
+                if (flow.length === 0) {
+                    return;
+                }
+                flow.forEach(async f => {
+                    await accountFlow.updateFlow(f.id, f.accountId, f.flow);
+                });
+                const splitNumber = isSQLite ? 25 : 75;
+                for (let i = 0; i < Math.ceil(flow.length / splitNumber); i++) {
+                    const insertFlow = flow.slice(i * splitNumber, i * splitNumber + splitNumber);
+                    await knex('saveFlow').insert(insertFlow).catch();
+                    logger.info(`[server: ${server.id}] insert ${insertFlow.length} flow`);
+                }
+            }
         };
-        let flow = await manager.send({
-          command: 'flow',
-          options,
-        }, {
-          host: server.host,
-          port: server.port,
-          password: server.password,
-        });
-        flow = flow.map(f => {
-          return {
-            id: server.id,
-            accountId: accountInfo[f.port - server.shift] || 0,
-            port: f.port,
-            flow: f.sumFlow,
-            time: Date.now(),
-          };
-        }).filter(f => {
-          return f.flow > 0;
-        });
-        if(flow.length === 0) {
-          return;
+        for (const server of servers) {
+            await saveServerFlow(server).catch(err => {
+                logger.error(`[server: ${server.id}] save flow error`);
+            });
         }
-        flow.forEach(async f => {
-          await accountFlow.updateFlow(f.id, f.accountId, f.flow);
-        });
-        const splitNumber = isSQLite ? 25 : 75;
-        for(let i = 0; i < Math.ceil(flow.length / splitNumber); i++) {
-          const insertFlow = flow.slice(i * splitNumber, i * splitNumber + splitNumber);
-          await knex('saveFlow').insert(insertFlow).catch();
-          logger.info(`[server: ${ server.id }] insert ${ insertFlow.length } flow`);
-        }
-      }
-    };
-    for(const server of servers) {
-      await saveServerFlow(server).catch(err => {
-        logger.error(`[server: ${ server.id }] save flow error`);
-      });
+    } catch (err) {
+        logger.error(err);
+        return;
     }
-  } catch(err) {
-    logger.error(err);
-    return;
-  }
 };
 
 cron.minute(() => {
-  saveFlow();
+    saveFlow();
 }, 'SaveFlow', 1);

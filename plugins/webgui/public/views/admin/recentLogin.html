@@ -31,13 +31,17 @@
                 <div flex layout="row" layout-align="space-between center">
                     <div flex="70" flex layout="row">
                         <div style="color: #aaa; width: 40px; min-width: 40px;">{{ $index + 1 }}.</div>
-                        <div style="word-break: keep-all; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ user.email }}</div>
+                        <div style="word-break: keep-all; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            {{ user.email }}
+                        </div>
                     </div>
                     <div flex="30" layout="row" layout-align="end center"
-                    style="text-align: right; color: #aaa;"
-                        ng-if="user.lastLogin">
+                         style="text-align: right; color: #aaa;"
+                         ng-if="user.lastLogin">
                         <div hide-xs hide-sm style="font-size: 0.9em;">{{user.port}}</div>
-                        <div style="min-width: 75px; font-size: 0.8em;">{{user.lastLogin | timeagoshort | translateTime}}</div>
+                        <div style="min-width: 75px; font-size: 0.8em;">
+                            {{user.lastLogin | timeagoshort | translateTime}}
+                        </div>
                     </div>
                 </div>
                 <md-divider></md-divider>

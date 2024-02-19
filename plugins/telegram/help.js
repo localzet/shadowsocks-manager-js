@@ -26,9 +26,9 @@
 const telegram = appRequire('plugins/telegram/index').telegram;
 
 telegram.on('message', message => {
-  if (message.message.text === 'help') {
-    let str = '';
-    str += `Command:
+    if (message.message.text === 'help') {
+        let str = '';
+        str += `Command:
 
   auth
 
@@ -50,6 +50,6 @@ telegram.on('message', message => {
 
 Read more info at https://github.com/shadowsocks/shadowsocks-manager/tree/master/plugins/telegram/README.md
 `;
-    telegram.emit('send', message, str);
-  }
+        telegram.emit('send', message, str);
+    }
 });

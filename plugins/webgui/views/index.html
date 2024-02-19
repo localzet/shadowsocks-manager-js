@@ -48,34 +48,41 @@
 </head>
 
 <body ng-cloak>
-    <script src="<%= cdn%>/libs/lib.js"></script>
-    <script>
-        window.api = '';
-        window.cdn = '<%= cdn%>';
-        window.title = '<%= title%>';
-    </script>
-    <% if (analytics) { %>
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-        ga('create', '<%= analytics%>', 'auto');
-        ga('send', 'pageview');
-    </script>
-    <% } %>
-    <script src="/libs/bundle.js"></script>
-    <div ng-controller="MainController" layout-fill>
-        <div layout-fill layout="row" layout-align="center center" ng-show="mainLoading">
-            <div layout="column" layout-align="center center">
-                <md-progress-circular md-mode="indeterminate" class="md-accent"></md-progress-circular>
-            </div>
+<script src="<%= cdn%>/libs/lib.js"></script>
+<script>
+    window.api = '';
+    window.cdn = '<%= cdn%>';
+    window.title = '<%= title%>';
+</script>
+<% if (analytics) { %>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', '<%= analytics%>', 'auto');
+    ga('send', 'pageview');
+</script>
+<% } %>
+<script src="/libs/bundle.js"></script>
+<div ng-controller="MainController" layout-fill>
+    <div layout-fill layout="row" layout-align="center center" ng-show="mainLoading">
+        <div layout="column" layout-align="center center">
+            <md-progress-circular md-mode="indeterminate" class="md-accent"></md-progress-circular>
         </div>
-        <div ng-hide="mainLoading" ui-view layout-fill></div>
     </div>
-    <% if (paypal) { %>
-        <script async src="https://www.paypalobjects.com/api/checkout.js"></script>
-    <% } %>
+    <div ng-hide="mainLoading" ui-view layout-fill></div>
+</div>
+<% if (paypal) { %>
+<script async src="https://www.paypalobjects.com/api/checkout.js"></script>
+<% } %>
 </body>
 
 </html>

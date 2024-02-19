@@ -24,19 +24,19 @@
  */
 
 .social-buttons-mobile {
-  margin-top: 3vh;
-  margin-bottom: 5vh;
+    margin-top: 3vh;
+    margin-bottom: 5vh;
 }
 
 .social-buttons {
-  margin-top: 1vh;
-  margin-bottom: 3vh;
+    margin-top: 1vh;
+    margin-bottom: 3vh;
 }
 
 .social-button {
-  width: 18vw;
-  max-width: 55px;
-  color: #333;
-  margin: 15px;
-  cursor: pointer;
+    width: 18vw;
+    max-width: 55px;
+    color: #333;
+    margin: 15px;
+    cursor: pointer;
 }

@@ -33,7 +33,8 @@
                     </md-switch>
                 </div>
             </div>
-            <div layout="column" layout-wrap flex ng-repeat="order in publicInfo.orders" ng-if="publicInfo.group.groupOrder">
+            <div layout="column" layout-wrap flex ng-repeat="order in publicInfo.orders"
+                 ng-if="publicInfo.group.groupOrder">
                 <div layout="column" layout-align="center stretch">
                     <md-checkbox ng-model="publicInfo.orderObj[order.id]">
                         <div>{{ order.name }}</div>

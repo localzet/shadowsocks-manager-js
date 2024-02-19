@@ -37,41 +37,41 @@ const flow = appRequire('plugins/cli/menu/flow');
 const index = appRequire('plugins/cli/index');
 
 const main = [
-  {
-    type: 'list',
-    name: 'mainMeun',
-    message: () => {
-      return 'Main menu [' + index.getManagerAddress().host + ':' + index.getManagerAddress().port + ']';
-    },
-    choices: ['add port', 'list port'],
-  }
+    {
+        type: 'list',
+        name: 'mainMeun',
+        message: () => {
+            return 'Main menu [' + index.getManagerAddress().host + ':' + index.getManagerAddress().port + ']';
+        },
+        choices: ['add port', 'list port'],
+    }
 ];
 
-if(isFlowSaverUse) {
-  main[0].choices.push('add server', 'list server', 'flow');
+if (isFlowSaverUse) {
+    main[0].choices.push('add server', 'list server', 'flow');
 }
 
 const mainMeun = () => {
-  console.log();
-  inquirer.prompt(main)
-  .then(success => {
-    if(success.mainMeun === 'list port') {
-      return listPort.list();
-    } else if(success.mainMeun === 'add port') {
-      return addPort.add();
-    } else if(success.mainMeun === 'list server') {
-      return listServer.list();
-    } else if(success.mainMeun === 'add server') {
-      return addServer.add();
-    } else if(success.mainMeun === 'flow') {
-      return flow.getFlow();
-    }
-  }).then(() => {
-    return mainMeun();
-  })
-  .catch(() => {
-    return mainMeun();
-  });
+    console.log();
+    inquirer.prompt(main)
+        .then(success => {
+            if (success.mainMeun === 'list port') {
+                return listPort.list();
+            } else if (success.mainMeun === 'add port') {
+                return addPort.add();
+            } else if (success.mainMeun === 'list server') {
+                return listServer.list();
+            } else if (success.mainMeun === 'add server') {
+                return addServer.add();
+            } else if (success.mainMeun === 'flow') {
+                return flow.getFlow();
+            }
+        }).then(() => {
+        return mainMeun();
+    })
+        .catch(() => {
+            return mainMeun();
+        });
 };
 
 mainMeun();

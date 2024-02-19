@@ -24,80 +24,87 @@
   -->
 
 <div layout-fill>
-  <md-list>
-    <md-list-item>
-      <div class="md-list-item-text" style="width: 100%;" layout="row" layout-align="space-between center">
-        <div flex="75">开启代理</div>
-        <md-switch ng-model="proxy.status" aria-label="proxy" ng-change="changeStatus()" ng-disabled="!account.id">
-        </md-switch>
-      </div>
-    </md-list-item>
-    <md-list-item>
-      <div class="md-list-item-text" style="width: 100%;" layout="row" layout-align="space-between center">
-        <div flex="50">模式</div>
-        <md-radio-group ng-model="proxy.mode" layout="row" ng-change="changeMode()" ng-disabled="!account.id">
-          <md-radio-button value="Rule" class="text-capitalize">
-            规则
-          </md-radio-button>
-          <md-radio-button value="Global" class="text-capitalize">
-            全局
-          </md-radio-button>
-        </md-radio-group>
-        </md-switch>
-      </div>
-    </md-list-item>
-    <md-divider ng-if="isInit"></md-divider>
-    <md-progress-linear md-mode="indeterminate" ng-if="!isInit"></md-progress-linear>
-    <md-list-item ng-if="account.id && isInit">
-      <div class="md-list-item-text" style="width: 100%;" layout="row" layout-wrap layout-align="space-between center">
-        <div flex="100" layout="row" layout-align="space-between center">
-          <div>流量</div>
-          <div ng-show="account.data && account.data.flow">{{ currentFlow | flow }} /
-            {{ account.data.flow + account.data.flowPack | flow }}</div>
-          <div ng-show="!account.data || !account.data.flow">{{ currentFlow | flow }} / ∞</div>
-        </div>
-      </div>
-    </md-list-item>
-    <md-list-item ng-if="account.id && isInit">
-      <div class="md-list-item-text" style="width: 100%;" layout="row" layout-wrap layout-align="space-between center">
-        <div flex="100" layout="row" layout-align="space-between center">
-          <div>节点选择</div>
-          <div ng-show="account.data.expire">{{ account.data.expire | date : 'yyyy-MM-dd HH:mm' }} 到期</div>
-        </div>
-      </div>
-    </md-list-item>
-    <md-list-item ng-if="account.id && isInit">
-      <div class="md-list-item-text" style="width: 100%" layout="row" layout-wrap layout-align="space-between center">
-        <div layout="row" layout-wrap style="max-height: 440px; overflow-y: scroll;" class="hide-scrollbar">
-          <div flex="25" ng-repeat="server in servers">
-            <md-card layout-align="center center" ng-click="setProxy(server)" ng-style="serverStyle(server)"
-              class="no-focus-outline">
-              <md-card-content>{{server.name}}</md-card-content>
-            </md-card>
-          </div>
-        </div>
-      </div>
-    </md-list-item>
-    <md-list-item ng-if="!account.id && isInit">
-      <div flex class="pay-elements" layout="column" layout-align="center center" ng-show="pay.status === 'choose'">
-        <div layout="row" class="pay-element" layout-align="space-between center" ng-repeat="order in orders" ng-show="order.alipay > 0" style="width: 300px;" ng-click="getQrcode(order.id)">
-          <div layout="column">
-            <span>{{ order.name }}</span>
-            <span style="color: #666;">{{ order.shortComment }}</span>
-          </div>
-          <div layout="column" style="font-size: 1.35em;">
-            ￥{{ order.alipay }}
-          </div>
-        </div>
-      </div>
-      <div flex class="pay-elements" ng-show="pay.status === 'pay'" layout="column" layout-align="center center">
-        <qr size="280" layout-margin text="pay.qrcode" image="true" style="margin-top: 35px;"></qr>
-        <div>请使用支付宝扫码付款</div>
-        <div>付款成功后将自动生效</div>
-        <div>
-          <md-button md-no-ink class="md-primary" ng-click="pay.status = 'choose'">返回</md-button>
-        </div>
-      </div>
-    </md-list-item>
-  </md-list>
+    <md-list>
+        <md-list-item>
+            <div class="md-list-item-text" style="width: 100%;" layout="row" layout-align="space-between center">
+                <div flex="75">开启代理</div>
+                <md-switch ng-model="proxy.status" aria-label="proxy" ng-change="changeStatus()"
+                           ng-disabled="!account.id">
+                </md-switch>
+            </div>
+        </md-list-item>
+        <md-list-item>
+            <div class="md-list-item-text" style="width: 100%;" layout="row" layout-align="space-between center">
+                <div flex="50">模式</div>
+                <md-radio-group ng-model="proxy.mode" layout="row" ng-change="changeMode()" ng-disabled="!account.id">
+                    <md-radio-button value="Rule" class="text-capitalize">
+                        规则
+                    </md-radio-button>
+                    <md-radio-button value="Global" class="text-capitalize">
+                        全局
+                    </md-radio-button>
+                </md-radio-group>
+                </md-switch>
+            </div>
+        </md-list-item>
+        <md-divider ng-if="isInit"></md-divider>
+        <md-progress-linear md-mode="indeterminate" ng-if="!isInit"></md-progress-linear>
+        <md-list-item ng-if="account.id && isInit">
+            <div class="md-list-item-text" style="width: 100%;" layout="row" layout-wrap
+                 layout-align="space-between center">
+                <div flex="100" layout="row" layout-align="space-between center">
+                    <div>流量</div>
+                    <div ng-show="account.data && account.data.flow">{{ currentFlow | flow }} /
+                        {{ account.data.flow + account.data.flowPack | flow }}
+                    </div>
+                    <div ng-show="!account.data || !account.data.flow">{{ currentFlow | flow }} / ∞</div>
+                </div>
+            </div>
+        </md-list-item>
+        <md-list-item ng-if="account.id && isInit">
+            <div class="md-list-item-text" style="width: 100%;" layout="row" layout-wrap
+                 layout-align="space-between center">
+                <div flex="100" layout="row" layout-align="space-between center">
+                    <div>节点选择</div>
+                    <div ng-show="account.data.expire">{{ account.data.expire | date: 'yyyy-MM-dd HH:mm' }} 到期</div>
+                </div>
+            </div>
+        </md-list-item>
+        <md-list-item ng-if="account.id && isInit">
+            <div class="md-list-item-text" style="width: 100%" layout="row" layout-wrap
+                 layout-align="space-between center">
+                <div layout="row" layout-wrap style="max-height: 440px; overflow-y: scroll;" class="hide-scrollbar">
+                    <div flex="25" ng-repeat="server in servers">
+                        <md-card layout-align="center center" ng-click="setProxy(server)" ng-style="serverStyle(server)"
+                                 class="no-focus-outline">
+                            <md-card-content>{{server.name}}</md-card-content>
+                        </md-card>
+                    </div>
+                </div>
+            </div>
+        </md-list-item>
+        <md-list-item ng-if="!account.id && isInit">
+            <div flex class="pay-elements" layout="column" layout-align="center center"
+                 ng-show="pay.status === 'choose'">
+                <div layout="row" class="pay-element" layout-align="space-between center" ng-repeat="order in orders"
+                     ng-show="order.alipay > 0" style="width: 300px;" ng-click="getQrcode(order.id)">
+                    <div layout="column">
+                        <span>{{ order.name }}</span>
+                        <span style="color: #666;">{{ order.shortComment }}</span>
+                    </div>
+                    <div layout="column" style="font-size: 1.35em;">
+                        ￥{{ order.alipay }}
+                    </div>
+                </div>
+            </div>
+            <div flex class="pay-elements" ng-show="pay.status === 'pay'" layout="column" layout-align="center center">
+                <qr size="280" layout-margin text="pay.qrcode" image="true" style="margin-top: 35px;"></qr>
+                <div>请使用支付宝扫码付款</div>
+                <div>付款成功后将自动生效</div>
+                <div>
+                    <md-button md-no-ink class="md-primary" ng-click="pay.status = 'choose'">返回</md-button>
+                </div>
+            </div>
+        </md-list-item>
+    </md-list>
 </div>

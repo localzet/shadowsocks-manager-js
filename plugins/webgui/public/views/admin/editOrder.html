@@ -64,7 +64,8 @@
                         <label translate>类型</label>
                         <div layout="row">
                             <md-select ng-model="order.type" style="width: 100%;">
-                                <md-option ng-repeat="type in typeList" value="{{type.value}}" translate>{{type.key}}</md-option>
+                                <md-option ng-repeat="type in typeList" value="{{type.value}}" translate>{{type.key}}
+                                </md-option>
                             </md-select>
                         </div>
                     </md-input-container>
@@ -94,15 +95,16 @@
                     </md-input-container>
                 </div>
                 <div layout="row" layout-align="space-between center" ng-show="order.baseId">
-                        <md-input-container class="md-block" flex="100">
-                            <label translate>流量</label>
-                            <input type="text" name="flow" ng-model="order.flowStr">
-                        </md-input-container>
-                    </div>
+                    <md-input-container class="md-block" flex="100">
+                        <label translate>流量</label>
+                        <input type="text" name="flow" ng-model="order.flowStr">
+                    </md-input-container>
+                </div>
                 <div layout="row" layout-align="space-between center" ng-hide="order.baseId">
                     <md-input-container class="md-block" flex="45">
                         <label translate>自动删除延迟</label>
-                        <input type="text" name="autoRemoveDelay" ng-model="order.autoRemoveDelayStr" ng-disabled="!order.autoRemove">
+                        <input type="text" name="autoRemoveDelay" ng-model="order.autoRemoveDelayStr"
+                               ng-disabled="!order.autoRemove">
                     </md-input-container>
                     <md-input-container class="md-block" flex="45">
                         <label translate>端口分配范围</label>
@@ -120,14 +122,16 @@
             <div style="width: 100%;" layout="row" layout-align="space-between center" ng-hide="order.baseId">
                 <div flex="75">合并多服务器流量统计</div>
                 <div flex layout="row" layout-align="end center">
-                    <md-switch ng-model="order.multiServerFlow" aria-label="multiServerFlow" ng-true-value="1" ng-false-value="0">
+                    <md-switch ng-model="order.multiServerFlow" aria-label="multiServerFlow" ng-true-value="1"
+                               ng-false-value="0">
                     </md-switch>
                 </div>
             </div>
             <div style="width: 100%;" layout="row" layout-align="space-between center" ng-hide="order.baseId">
                 <div flex="75">续费允许更换套餐</div>
                 <div flex layout="row" layout-align="end center">
-                    <md-switch ng-model="order.changeOrderType" aria-label="changeOrderType" ng-true-value="1" ng-false-value="0">
+                    <md-switch ng-model="order.changeOrderType" aria-label="changeOrderType" ng-true-value="1"
+                               ng-false-value="0">
                     </md-switch>
                 </div>
             </div>
@@ -142,10 +146,13 @@
             <div ng-click="setOrderServer()" ng-hide="order.baseId">
                 <div style="width: 100%;" layout="row" layout-align="space-between center">
                     <div flex="75" translate>
-                        <span>自定义服务器&nbsp;</span><span style="color: #777">[{{ order.orderServer ? orderServer.length : '∞' }}]</span>
+                        <span>自定义服务器&nbsp;</span><span
+                            style="color: #777">[{{ order.orderServer ? orderServer.length : '∞' }}]</span>
                     </div>
                     <div flex layout="row" layout-align="end center">
-                        <md-button class="md-icon-button"><md-icon>keyboard_arrow_right</md-icon></md-button>
+                        <md-button class="md-icon-button">
+                            <md-icon>keyboard_arrow_right</md-icon>
+                        </md-button>
                     </div>
                 </div>
             </div>
@@ -156,7 +163,9 @@
                         <span>自定义分组&nbsp;</span><span style="color: #777">[{{ orderGroup.length }}]</span>
                     </div>
                     <div flex layout="row" layout-align="end center">
-                        <md-button class="md-icon-button"><md-icon>keyboard_arrow_right</md-icon></md-button>
+                        <md-button class="md-icon-button">
+                            <md-icon>keyboard_arrow_right</md-icon>
+                        </md-button>
                     </div>
                 </div>
             </div>
@@ -167,7 +176,9 @@
                         <span>将改动变更到已有的账号&nbsp;</span><span style="color: #777">[{{ currentAccount }}]</span>
                     </div>
                     <div flex layout="row" layout-align="end center">
-                        <md-button class="md-icon-button"><md-icon>keyboard_arrow_right</md-icon></md-button>
+                        <md-button class="md-icon-button">
+                            <md-icon>keyboard_arrow_right</md-icon>
+                        </md-button>
                     </div>
                 </div>
             </div>

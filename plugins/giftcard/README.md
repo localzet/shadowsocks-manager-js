@@ -1,5 +1,7 @@
 # Enable
+
 config.yaml:
+
 ```
 plugins:
   giftcard:

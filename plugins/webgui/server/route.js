@@ -47,36 +47,42 @@ const knex = appRequire('init/knex').knex;
 const config = appRequire('services/config').all();
 
 const isUser = (req, res, next) => {
-  if (req.session.type === 'normal') {
-    knex('user').where({ id: req.session.user, type: 'normal' }).then(s => s[0]).then(user => {
-      if(!user) { return res.status(401).end(); }
-      req.userInfo = user;
-      return next();
-    }).catch(err => {
-      return res.status(401).end();
-    });
-  } else {
-    return res.status(401).end();
-  }
+    if (req.session.type === 'normal') {
+        knex('user').where({id: req.session.user, type: 'normal'}).then(s => s[0]).then(user => {
+            if (!user) {
+                return res.status(401).end();
+            }
+            req.userInfo = user;
+            return next();
+        }).catch(err => {
+            return res.status(401).end();
+        });
+    } else {
+        return res.status(401).end();
+    }
 };
 
 const isAdmin = (req, res, next) => {
-  if (req.session.type === 'admin') {
-    knex('user').where({ id: req.session.user, type: 'admin' }).then(s => s[0]).then(user => {
-      if(!user) { return res.status(401).end(); }
-      req.adminInfo = user;
-      return next();
-    }).catch(err => {
-      return res.status(401).end();
-    });
-  } else {
-    return res.status(401).end();
-  }
+    if (req.session.type === 'admin') {
+        knex('user').where({id: req.session.user, type: 'admin'}).then(s => s[0]).then(user => {
+            if (!user) {
+                return res.status(401).end();
+            }
+            req.adminInfo = user;
+            return next();
+        }).catch(err => {
+            return res.status(401).end();
+        });
+    } else {
+        return res.status(401).end();
+    }
 };
 
 const isSuperAdmin = (req, res, next) => {
-  if(req.session.user !== 1) { return res.status(401).end(); }
-  next();
+    if (req.session.user !== 1) {
+        return res.status(401).end();
+    }
+    next();
 };
 
 app.get('/api/home/login', home.status);
@@ -262,63 +268,65 @@ app.get('/api/user/ref/user', isUser, user.getRefUser);
 app.get('/api/user/order', isUser, user.getOrder);
 
 if (config.plugins.webgui_telegram && config.plugins.webgui_telegram.use) {
-  const telegram = appRequire('plugins/webgui_telegram/account');
-  app.get('/api/user/telegram/code', isUser, user.getTelegramCode);
-  app.get('/api/admin/telegram/code', isAdmin, adminSetting.getTelegramCode);
-  app.post('/api/user/telegram/unbind', isUser, user.unbindTelegram);
-  app.post('/api/admin/telegram/unbind', isAdmin, adminSetting.unbindTelegram);
-  app.get('/api/user/telegram/qrcode/:qrcodeId', telegram.qrcode);
-  app.post('/api/user/telegram/login', telegram.login);
+    const telegram = appRequire('plugins/webgui_telegram/account');
+    app.get('/api/user/telegram/code', isUser, user.getTelegramCode);
+    app.get('/api/admin/telegram/code', isAdmin, adminSetting.getTelegramCode);
+    app.post('/api/user/telegram/unbind', isUser, user.unbindTelegram);
+    app.post('/api/admin/telegram/unbind', isAdmin, adminSetting.unbindTelegram);
+    app.get('/api/user/telegram/qrcode/:qrcodeId', telegram.qrcode);
+    app.post('/api/user/telegram/login', telegram.login);
 }
 
 if (config.plugins.webgui.gcmAPIKey && config.plugins.webgui.gcmSenderId) {
-  app.post('/api/push/client', push.client);
-  app.delete('/api/push/client', push.deleteClient);
+    app.post('/api/push/client', push.client);
+    app.delete('/api/push/client', push.deleteClient);
 }
 
 if (config.plugins.webgui_crisp && config.plugins.webgui_crisp.use) {
-  const crisp = appRequire('plugins/webgui_crisp/index');
-  app.get('/api/user/crisp', isUser, crisp.getUserToken);
-  app.post('/api/user/crisp', isUser, crisp.setUserToken);
+    const crisp = appRequire('plugins/webgui_crisp/index');
+    app.get('/api/user/crisp', isUser, crisp.getUserToken);
+    app.post('/api/user/crisp', isUser, crisp.setUserToken);
 }
 
 app.get('/favicon.png', (req, res) => {
-  let file = './libs/favicon.png';
-  let options = {
-    root: './plugins/webgui/'
-  };
-  const iconPath = config.plugins.webgui.icon;
-  if (iconPath) {
-    const ssmgrPath = path.resolve(os.homedir(), './.ssmgr/');
-    if (iconPath[0] === '/' || iconPath[0] === '.') {
-      options = {};
-      file = path.resolve(iconPath);
-    } else if (iconPath[0] === '~') {
-      file = '.' + iconPath.substr(1);
-      options.root = os.homedir();
-    } else {
-      file = iconPath;
-      options.root = ssmgrPath;
+    let file = './libs/favicon.png';
+    let options = {
+        root: './plugins/webgui/'
+    };
+    const iconPath = config.plugins.webgui.icon;
+    if (iconPath) {
+        const ssmgrPath = path.resolve(os.homedir(), './.ssmgr/');
+        if (iconPath[0] === '/' || iconPath[0] === '.') {
+            options = {};
+            file = path.resolve(iconPath);
+        } else if (iconPath[0] === '~') {
+            file = '.' + iconPath.substr(1);
+            options.root = os.homedir();
+        } else {
+            file = iconPath;
+            options.root = ssmgrPath;
+        }
     }
-  }
-  res.sendFile(file, options);
+    res.sendFile(file, options);
 });
 
 const manifest = appRequire('plugins/webgui/views/manifest').manifest;
 app.get('/manifest.json', (req, res) => {
-  return knex('webguiSetting').select().where({
-    key: 'base',
-  }).then(success => {
-    if (!success.length) {
-      return Promise.reject('settings not found');
-    }
-    success[0].value = JSON.parse(success[0].value);
-    return success[0].value;
-  }).then(success => {
-    manifest.name = success.title;
-    if(success.shortTitle) { manifest.short_name = success.shortTitle; }
-    return res.json(manifest);
-  });
+    return knex('webguiSetting').select().where({
+        key: 'base',
+    }).then(success => {
+        if (!success.length) {
+            return Promise.reject('settings not found');
+        }
+        success[0].value = JSON.parse(success[0].value);
+        return success[0].value;
+    }).then(success => {
+        manifest.name = success.title;
+        if (success.shortTitle) {
+            manifest.short_name = success.shortTitle;
+        }
+        return res.json(manifest);
+    });
 });
 
 const configForFrontend = {};
@@ -328,57 +336,57 @@ const keywords = config.plugins.webgui.keywords || ' ';
 const description = config.plugins.webgui.description || ' ';
 const analytics = config.plugins.webgui.googleAnalytics || 'UA-140334082-1';
 const colors = [
-  { value: 'red', color: '#F44336' },
-  { value: 'pink', color: '#E91E63' },
-  { value: 'purple', color: '#9C27B0' },
-  { value: 'deep-purple', color: '#673AB7' },
-  { value: 'indigo', color: '#3F51B5' },
-  { value: 'blue', color: '#2196F3' },
-  { value: 'light-blue', color: '#03A9F4' },
-  { value: 'cyan', color: '#00BCD4' },
-  { value: 'teal', color: '#009688' },
-  { value: 'green', color: '#4CAF50' },
-  { value: 'light-green', color: '#8BC34A' },
-  { value: 'lime', color: '#CDDC39' },
-  { value: 'yellow', color: '#FFEB3B' },
-  { value: 'amber', color: '#FFC107' },
-  { value: 'orange', color: '#FF9800' },
-  { value: 'deep-orange', color: '#FF5722' },
-  { value: 'brown', color: '#795548' },
-  { value: 'blue-grey', color: '#607D8B' },
-  { value: 'grey', color: '#9E9E9E' },
+    {value: 'red', color: '#F44336'},
+    {value: 'pink', color: '#E91E63'},
+    {value: 'purple', color: '#9C27B0'},
+    {value: 'deep-purple', color: '#673AB7'},
+    {value: 'indigo', color: '#3F51B5'},
+    {value: 'blue', color: '#2196F3'},
+    {value: 'light-blue', color: '#03A9F4'},
+    {value: 'cyan', color: '#00BCD4'},
+    {value: 'teal', color: '#009688'},
+    {value: 'green', color: '#4CAF50'},
+    {value: 'light-green', color: '#8BC34A'},
+    {value: 'lime', color: '#CDDC39'},
+    {value: 'yellow', color: '#FFEB3B'},
+    {value: 'amber', color: '#FFC107'},
+    {value: 'orange', color: '#FF9800'},
+    {value: 'deep-orange', color: '#FF5722'},
+    {value: 'brown', color: '#795548'},
+    {value: 'blue-grey', color: '#607D8B'},
+    {value: 'grey', color: '#9E9E9E'},
 ];
 const homePage = async (req, res) => {
-  res.set({
-    Link: [
-      '</libs/style.css>; rel=preload; as=style,',
-      '</libs/angular-material.min.css>; rel=preload; as=style,',
-      '</libs/lib.js>; rel=preload; as=script,',
-      '</libs/bundle.js>; rel=preload; as=script',
-    ].join(' ')
-  });
-  const base = await knex('webguiSetting').where({
-    key: 'base',
-  }).then(success => {
-    if (!success.length) {
-      return Promise.reject('settings not found');
-    }
-    success[0].value = JSON.parse(success[0].value);
-    return success[0].value;
-  });
-  configForFrontend.themePrimary = base.themePrimary;
-  configForFrontend.themeAccent = base.themeAccent;
-  const filterColor = colors.filter(f => f.value === base.themePrimary);
-  configForFrontend.browserColor = filterColor[0] ? filterColor[0].color : '#3F51B5';
-  return res.render('index', {
-    title: base.title,
-    cdn,
-    keywords,
-    description,
-    analytics,
-    config: configForFrontend,
-    paypal: !!(config.plugins.paypal && config.plugins.paypal.use),
-  });
+    res.set({
+        Link: [
+            '</libs/style.css>; rel=preload; as=style,',
+            '</libs/angular-material.min.css>; rel=preload; as=style,',
+            '</libs/lib.js>; rel=preload; as=script,',
+            '</libs/bundle.js>; rel=preload; as=script',
+        ].join(' ')
+    });
+    const base = await knex('webguiSetting').where({
+        key: 'base',
+    }).then(success => {
+        if (!success.length) {
+            return Promise.reject('settings not found');
+        }
+        success[0].value = JSON.parse(success[0].value);
+        return success[0].value;
+    });
+    configForFrontend.themePrimary = base.themePrimary;
+    configForFrontend.themeAccent = base.themeAccent;
+    const filterColor = colors.filter(f => f.value === base.themePrimary);
+    configForFrontend.browserColor = filterColor[0] ? filterColor[0].color : '#3F51B5';
+    return res.render('index', {
+        title: base.title,
+        cdn,
+        keywords,
+        description,
+        analytics,
+        config: configForFrontend,
+        paypal: !!(config.plugins.paypal && config.plugins.paypal.use),
+    });
 };
 app.get('/', homePage);
 app.get(/^\/home\//, homePage);
@@ -387,26 +395,26 @@ app.get(/^\/user\//, homePage);
 app.get(/^\/app\//, homePage);
 
 app.get('/serviceworker.js', async (req, res) => {
-  try {
-    const setting = await knex('webguiSetting').select().where({
-      key: 'base',
-    }).then(success => {
-      success[0].value = JSON.parse(success[0].value);
-      return success[0].value;
-    });
-    res.header('Content-Type', 'text/javascript');
-    res.render('serviceworker.js', {
-      serviceWorker: !!setting.serviceWorker,
-      serviceWorkerTime: setting.serviceWorkerTime,
-    });
-  } catch(err) {
-    logger.error(err);
-    res.status(500).end();
-  }
+    try {
+        const setting = await knex('webguiSetting').select().where({
+            key: 'base',
+        }).then(success => {
+            success[0].value = JSON.parse(success[0].value);
+            return success[0].value;
+        });
+        res.header('Content-Type', 'text/javascript');
+        res.render('serviceworker.js', {
+            serviceWorker: !!setting.serviceWorker,
+            serviceWorkerTime: setting.serviceWorkerTime,
+        });
+    } catch (err) {
+        logger.error(err);
+        res.status(500).end();
+    }
 });
 
 app.get('*', (req, res) => {
-  res.redirect('/');
+    res.redirect('/');
 });
 
 // wss.on('connection', function connection(ws) {

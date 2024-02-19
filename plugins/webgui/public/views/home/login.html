@@ -40,12 +40,15 @@
                 <div layout="row">
                     <md-input-container class="md-block" flex="65">
                         <label>{{ '密码' | translate }}</label>
-                        <input type="password" required name="password" ng-model="user.password" ng-keypress="enterKey($event)">
+                        <input type="password" required name="password" ng-model="user.password"
+                               ng-keypress="enterKey($event)">
                     </md-input-container>
                     <div flex layout="row" layout-align="space-between center">
                         <div flex="5"></div>
                         <div style="margin-bottom: 25px;">
-                            <md-button class="md-raised md-primary" ng-click="login()" ng-disabled="!user.email || !user.password">{{ '登录' | translate }}</md-button>
+                            <md-button class="md-raised md-primary" ng-click="login()"
+                                       ng-disabled="!user.email || !user.password">{{ '登录' | translate }}
+                            </md-button>
                         </div>
                     </div>
                 </div>
@@ -57,7 +60,9 @@
         <div flex="10" flex-gt-sm="30"></div>
         <div layout="row" flex layout-align="space-around center">
             <md-button class="md-primary" ng-click="findPassword()">{{ '找回密码' | translate }}</md-button>
-            <md-button class="md-primary" ng-click="socialLogin()" ng-disabled="!hasSocialLogin">{{ '社交账号登录' | translate }}</md-button>
+            <md-button class="md-primary" ng-click="socialLogin()" ng-disabled="!hasSocialLogin">
+                {{ '社交账号登录' | translate }}
+            </md-button>
             <!-- <md-button class="md-raised md-primary" ng-click="login()" ng-disabled="!user.email || !user.password">{{ '登录' | translate }}</md-button> -->
         </div>
         <div flex="10" flex-gt-sm="30"></div>
@@ -89,12 +94,16 @@
                                 <div layout="row">
                                     <md-input-container class="md-block" flex="65">
                                         <label>{{ '密码' | translate }}</label>
-                                        <input type="password" required name="password" ng-model="user.password" ng-keypress="enterKey($event)">
+                                        <input type="password" required name="password" ng-model="user.password"
+                                               ng-keypress="enterKey($event)">
                                     </md-input-container>
                                     <div flex layout="row" layout-align="space-between center">
                                         <div flex="5"></div>
                                         <div style="margin-bottom: 25px;">
-                                            <md-button class="md-raised md-primary" ng-click="login()" ng-disabled="!user.email || !user.password">{{ '登录' | translate }}</md-button>
+                                            <md-button class="md-raised md-primary" ng-click="login()"
+                                                       ng-disabled="!user.email || !user.password">{{ '登录' | translate
+                                                }}
+                                            </md-button>
                                         </div>
                                     </div>
                                 </div>
@@ -105,8 +114,11 @@
                     <div flex layout="row" layout-align="center start">
                         <div flex="10"></div>
                         <div layout="row" flex layout-align="space-around center">
-                            <md-button class="md-primary" ng-click="findPassword()">{{ '找回密码' | translate }}</md-button>
-                            <md-button class="md-primary" ng-click="socialLogin()" ng-disabled="!hasSocialLogin">{{ '社交账号登录' | translate }}</md-button>
+                            <md-button class="md-primary" ng-click="findPassword()">{{ '找回密码' | translate }}
+                            </md-button>
+                            <md-button class="md-primary" ng-click="socialLogin()" ng-disabled="!hasSocialLogin">
+                                {{ '社交账号登录' | translate }}
+                            </md-button>
                             <!-- <md-button class="md-raised md-primary" ng-click="login()" ng-disabled="!user.email || !user.password">{{ '登录' | translate }}</md-button> -->
                         </div>
                         <div flex="10"></div>

@@ -24,7 +24,8 @@
   -->
 
 <md-dialog aria-label="add gift card dialog">
-    <div ng-show="publicInfo.status === 'loading'" layout="row" layout-align="center center" layout-margin layout-padding>
+    <div ng-show="publicInfo.status === 'loading'" layout="row" layout-align="center center" layout-margin
+         layout-padding>
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </div>
     <md-dialog-content ng-show="publicInfo.status !== 'loading'">
@@ -38,7 +39,9 @@
                     <md-input-container class="md-block" style="height: 54px;">
                         <label>类型</label>
                         <md-select ng-model="publicInfo.orderId">
-                            <md-option ng-repeat="order in publicInfo.orderList" ng-value="{{order.id}}">{{ order.name }}</md-option>
+                            <md-option ng-repeat="order in publicInfo.orderList" ng-value="{{order.id}}">{{ order.name
+                                }}
+                            </md-option>
                             <!-- <md-option ng-value="7">年</md-option>
                             <md-option ng-value="9">半年</md-option>
                             <md-option ng-value="6">季度</md-option>

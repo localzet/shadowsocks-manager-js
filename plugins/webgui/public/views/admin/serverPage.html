@@ -28,7 +28,9 @@
         <md-card flex>
             <md-card-header>
                 <md-card-header-text>
-                    <span class="md-title">{{ server.name }}&nbsp;<span style="color: #999" ng-if="portNumber">[ {{ onlineAccount.length }} / {{ portNumber }} ]</span></span>
+                    <span class="md-title">{{ server.name }}&nbsp;<span style="color: #999"
+                                                                        ng-if="portNumber">[ {{ onlineAccount.length }} / {{ portNumber
+                        }} ]</span></span>
                     <span class="md-subhead">{{server.host.split(':')[0]}}:{{server.port}}</span>
                 </md-card-header-text>
             </md-card-header>
@@ -36,7 +38,8 @@
                 <div flex="100" style="margin: 15px 0px 25px 0px;">
                     <div layout="column" layout-align="center center">
                         <div layout="row" layout-align="center center" style="margin-bottom: 15px;">
-                            <md-radio-group ng-model="flowType" ng-change="getChartData()" layout="row" layout-align="center center">
+                            <md-radio-group ng-model="flowType" ng-change="getChartData()" layout="row"
+                                            layout-align="center center">
                                 <md-radio-button value="hour"><span translate>时</span></md-radio-button>
                                 <md-radio-button value="day"><span translate>天</span></md-radio-button>
                                 <md-radio-button value="week"><span translate>周</span></md-radio-button>
@@ -52,19 +55,20 @@
                         </div>
                     </div>
                 </div>
-                <div layout="row" layout-xs="column" layout-sm="column" layout-warp layout-align="center center" style="overflow: hidden;">
+                <div layout="row" layout-xs="column" layout-sm="column" layout-warp layout-align="center center"
+                     style="overflow: hidden;">
                     <div flex-md="5" flex-gt-md="15"></div>
                     <div width="{{getChartSize().line[0]}}">
                         <div layout="row" layout-align="center center">
                             <div>
                                 <canvas class="chart chart-line"
-                                    width="{{getChartSize().line[0]}}"
-                                    height="{{getChartSize().line[1]}}"
-                                    chart-data="lineChart.data"
-                                    chart-labels="lineChart.labels"
-                                    chart-series="lineChart.series"
-                                    chart-options="lineChart.options"
-                                    chart-dataset-override="lineChart.datasetOverride">
+                                        width="{{getChartSize().line[0]}}"
+                                        height="{{getChartSize().line[1]}}"
+                                        chart-data="lineChart.data"
+                                        chart-labels="lineChart.labels"
+                                        chart-series="lineChart.series"
+                                        chart-options="lineChart.options"
+                                        chart-dataset-override="lineChart.datasetOverride">
                                 </canvas>
                             </div>
                         </div>
@@ -72,13 +76,17 @@
                     <div width="{{getChartSize().pie[0]}}">
                         <div layout="row" layout-align="center center">
                             <div style="position: relative;">
-                                <div ng-show="pieChart.data.length" style="position: absolute; bottom: 3px; color: #666;" ng-style="{ 'right': (getChartSize().pie[0] - getChartSize().pie[1])/2 + 'px' }">{{ pieChart.data.length }}</div>
+                                <div ng-show="pieChart.data.length"
+                                     style="position: absolute; bottom: 3px; color: #666;"
+                                     ng-style="{ 'right': (getChartSize().pie[0] - getChartSize().pie[1])/2 + 'px' }">
+                                    {{ pieChart.data.length }}
+                                </div>
                                 <canvas id="pie" class="chart chart-pie"
-                                    width="{{getChartSize().pie[0]}}"
-                                    height="{{getChartSize().pie[1]}}"
-                                    chart-data="pieChart.data"
-                                    chart-labels="pieChart.labels"
-                                    chart-options="pieChart.options">
+                                        width="{{getChartSize().pie[0]}}"
+                                        height="{{getChartSize().pie[1]}}"
+                                        chart-data="pieChart.data"
+                                        chart-labels="pieChart.labels"
+                                        chart-options="pieChart.options">
                                 </canvas>
                             </div>
                         </div>
@@ -92,23 +100,30 @@
 <div layout="row" layout-wrap ng-show="server">
     <md-card>
         <md-card-content layout="row">
-            <md-icon hide-xs hide-sm class="material-icons" ng-click="prevServer()" style="margin-left: 15px; margin-right: 15px; cursor: pointer;">navigate_before</md-icon>
+            <md-icon hide-xs hide-sm class="material-icons" ng-click="prevServer()"
+                     style="margin-left: 15px; margin-right: 15px; cursor: pointer;">navigate_before
+            </md-icon>
             <md-radio-group ng-model="accountFilter.value" layout="row" layout-wrap>
                 <md-radio-button value="all"><span translate>全部</span></md-radio-button>
                 <md-radio-button value="white"><span translate>可用</span></md-radio-button>
                 <md-radio-button value="red"><span translate>停止</span></md-radio-button>
                 <md-radio-button value="blue"><span translate>在线</span></md-radio-button>
             </md-radio-group>
-            <md-icon hide-xs hide-sm class="material-icons" ng-click="nextServer()" style="margin-left: 15px; margin-right: 15px; cursor: pointer;">navigate_next</md-icon>
+            <md-icon hide-xs hide-sm class="material-icons" ng-click="nextServer()"
+                     style="margin-left: 15px; margin-right: 15px; cursor: pointer;">navigate_next
+            </md-icon>
         </md-card-content>
     </md-card>
 </div>
 <div layout="row" layout-wrap>
-    <div flex-xs="100" flex-sm="50" flex-md="33" flex-gt-md="25" ng-repeat="(key, value) in currentPorts" ng-if="$index < visiblePortNumber" ng-show="matchPort(value, menuSearch.text)">
+    <div flex-xs="100" flex-sm="50" flex-md="33" flex-gt-md="25" ng-repeat="(key, value) in currentPorts"
+         ng-if="$index < visiblePortNumber" ng-show="matchPort(value, menuSearch.text)">
         <md-card md-colors="accountColor(value)">
             <md-card-content style="padding-top: 5px; padding-bottom: 5px;">
                 <div layout="row" layout-align="space-between center">
-                    <div flex="70" ng-click="toAccountPage(value.port)"><span>{{ value.port }}</span><br><span style="text-align:right; color: #aaa; font-size: 0.8em;">{{ (isWG || isTJ) ? '-' : value.password }}</span></div>
+                    <div flex="70" ng-click="toAccountPage(value.port)"><span>{{ value.port }}</span><br><span
+                            style="text-align:right; color: #aaa; font-size: 0.8em;">{{ (isWG || isTJ) ? '-' : value.password
+                        }}</span></div>
                     <div flex="30" layout="row" layout-align="space-between center">
                         <div></div>
                         <md-button class="md-icon-button" aria-label="ban" ng-click="banAccount(value.id)">
@@ -126,7 +141,8 @@
 </div>
 <div>
     <div flex layout="row" class="zero-element" layout-align="center center">
-        <md-progress-circular ng-show="!getServerInfoError && !server" md-mode="indeterminate" class="md-accent"></md-progress-circular>
+        <md-progress-circular ng-show="!getServerInfoError && !server" md-mode="indeterminate"
+                              class="md-accent"></md-progress-circular>
     </div>
 </div>
 <div style="height: 100px;"></div>

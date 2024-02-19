@@ -29,7 +29,7 @@
             <div layout="column" layout-wrap flex ng-repeat="group in publicInfo.groups">
                 <div layout="column" layout-align="center stretch">
                     <md-checkbox ng-model="publicInfo.groupObj[group.id].checked"
-                        ng-disabled="publicInfo.groupObj[group.id].disabled">
+                                 ng-disabled="publicInfo.groupObj[group.id].disabled">
                         <div>{{ group.name }}</div>
                     </md-checkbox>
                 </div>

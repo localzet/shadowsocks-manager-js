@@ -85,7 +85,7 @@ jobs:
           name: Push docker image
           command: |
             docker push gyteng/ssmgr-alpine
-            
+
 workflows:
   version: 2
   deploy:

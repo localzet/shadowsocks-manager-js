@@ -19,7 +19,7 @@ If you only have one shadowsocks server and you don't need to count the flows:
     ```
 
 2. Start ssmgr with type m:  
-    `ssmgr -t m -m yourHost:yourPort`
+   `ssmgr -t m -m yourHost:yourPort`
 
 3. Menu like this:
 
@@ -46,7 +46,7 @@ If you have more than one shadowsocks server or you have to count the flows, you
     ```
 
 2. Start ssmgr with type m:  
-    `ssmgr -t m -m yourHost:yourPort`
+   `ssmgr -t m -m yourHost:yourPort`
 
 3. Menu like this:
 

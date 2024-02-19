@@ -7,7 +7,9 @@ This plugin provide a webgui to control shadowsocks.
 [https://wall.gyteng.com](https://wall.gyteng.com)
 
 ## Usage
-1. Make sure your have read the usage according the [main readme page](https://github.com/shadowsocks/shadowsocks-manager/blob/master/README.md).
+
+1. Make sure your have read the usage according
+   the [main readme page](https://github.com/shadowsocks/shadowsocks-manager/blob/master/README.md).
 
 2. Create a config file in `~/.ssmgr/webgui.yml`:
 
@@ -65,7 +67,7 @@ This plugin provide a webgui to control shadowsocks.
     ```
 
 3. Start `ssmgr` with the config file:
-    `ssmgr -c webgui.yml`
+   `ssmgr -c webgui.yml`
 
 4. Open `http://yourwebsite.com`, the first register user will be the manager.
 

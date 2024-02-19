@@ -1,6 +1,7 @@
 # manager API
 
-shadowsocks 的 manager API 可以[参考官方文档](https://github.com/shadowsocks/shadowsocks/wiki/Manage-Multiple-Users)，采用`UDP`协议，指令比较简单，以
+shadowsocks 的 manager API 可以[参考官方文档](https://github.com/shadowsocks/shadowsocks/wiki/Manage-Multiple-Users)
+，采用`UDP`协议，指令比较简单，以
 
 `command[: JSON data]`
 

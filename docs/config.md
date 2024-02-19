@@ -22,7 +22,7 @@ docker run -idt \
 
 1. 创建配置文件
 
-  在`~/.ssmgr`目录下创建配置文件，支持 yaml 和 json 两种格式，使用 yaml 格式请注意保证正确的缩进
+在`~/.ssmgr`目录下创建配置文件，支持 yaml 和 json 两种格式，使用 yaml 格式请注意保证正确的缩进
 
 ```yaml
 type: s
@@ -50,22 +50,22 @@ db: 'db.sqlite'
 
 2. 运行 shadowsocks
 
-  不同版本的命令有一些差异，都要保证`--manager-address`的参数和上一步配置文件一致
+不同版本的命令有一些差异，都要保证`--manager-address`的参数和上一步配置文件一致
 
-  - libev `ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001`
-  - python `ssserver -m aes-256-cfb -p 12345 -k abcedf --manager-address 127.0.0.1:6001`
-  - rust `ssmanager -m aes-256-cfb --manager-address 127.0.0.1:6001`
+- libev `ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001`
+- python `ssserver -m aes-256-cfb -p 12345 -k abcedf --manager-address 127.0.0.1:6001`
+- rust `ssmanager -m aes-256-cfb --manager-address 127.0.0.1:6001`
 
 
 3. 调用刚刚的配置文件运行 ssmgr
 
-  `ssmgr -c /your/node/config/file`
+`ssmgr -c /your/node/config/file`
 
 !> 此处需要让程序后台运行，关于后台运行的方法请参考`pm2`、`byobu`等工具
 
 ## 配置并运行Web界面
 
-  创建配置文件，将`1.1.1.1`替换成刚刚创建节点的实际IP地址
+创建配置文件，将`1.1.1.1`替换成刚刚创建节点的实际IP地址
 
 ```yaml
 type: m
@@ -119,17 +119,15 @@ redis:
 
 !> site 字段填写网站的实际访问地址
 
-  调用此配置文件运行：
+调用此配置文件运行：
 
-  `ssmgr -c /your/webgui/config/file`
+`ssmgr -c /your/webgui/config/file`
 
-  若一切正常，便可看到主界面：
+若一切正常，便可看到主界面：
 
 ![](/_media/home.png)
 
 !> 成功运行后，如果有配置`admin_username`和`admin_password`字段，则会自动创建管理员账号，否则首个注册用户为管理员
-
-
 
 ## 配置更多的节点
 

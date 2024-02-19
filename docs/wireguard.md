@@ -36,6 +36,7 @@ echo 1 >/proc/sys/net/ipv4/ip_forward
 wg genkey > privatekey
 wg pubkey < privatekey > publickey
 ```
+
 其中 private key 写在配置文件里，public key 在 web 端增加服务器时填写
 
 ## 增加配置文件
@@ -56,6 +57,7 @@ sudo wg-quick up ./wg0.conf
 ## 启动 s 端
 
 使用[shadowsocks-manager-wireguard](https://github.com/gyteng/shadowsocks-manager-wireguard)作为 s 端即可
+
 ```
 node index --gateway 10.100.0.1 \
            --manager 0.0.0.0:6789 \

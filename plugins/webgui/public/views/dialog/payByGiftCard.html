@@ -24,7 +24,8 @@
   -->
 
 <md-dialog aria-label="confirm dialog">
-    <div ng-show="publicInfo.status === 'loading'" layout="row" layout-align="center center" layout-margin layout-padding>
+    <div ng-show="publicInfo.status === 'loading'" layout="row" layout-align="center center" layout-margin
+         layout-padding>
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </div>
     <md-dialog-content ng-show="publicInfo.status !== 'loading'">

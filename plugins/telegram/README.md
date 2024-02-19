@@ -16,7 +16,7 @@ This plugin can control shadowsocks through a telegram bot.
     ```
 
 3. Start `ssmgr` with type m, and you can talk to your bot to control it.  
-    `ssmgr -t m -m yourHost:yourPort`
+   `ssmgr -t m -m yourHost:yourPort`
 
 ## Command
 

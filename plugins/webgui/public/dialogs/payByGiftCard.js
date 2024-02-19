@@ -69,7 +69,10 @@ app.factory('payByGiftCardDialog', ['$mdDialog', '$http', '$filter',
                         publicInfo.message = dat.message;
                     }
                 })
-                .catch((err) => { publicInfo.status = "finish"; publicInfo.message = "充值出现错误"; });
+                .catch((err) => {
+                    publicInfo.status = "finish";
+                    publicInfo.message = "充值出现错误";
+                });
         };
         publicInfo.close = close;
         publicInfo.submit = submit;
@@ -77,12 +80,12 @@ app.factory('payByGiftCardDialog', ['$mdDialog', '$http', '$filter',
         const dialog = {
             templateUrl: `${cdn}/public/views/dialog/payByGiftCard.html`,
             escapeToClose: true,
-            locals: { bind: publicInfo },
+            locals: {bind: publicInfo},
             bindToController: true,
             controller: ['$scope', 'bind', ($scope, bind) => {
                 $scope.publicInfo = bind;
             }],
             clickOutsideToClose: false,
         };
-        return { show };
+        return {show};
     }]);
