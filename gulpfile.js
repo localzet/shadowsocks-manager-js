@@ -86,7 +86,7 @@ gulp.task('webguiBuild', () => {
                     test: /\.js$/,
                     use: [{
                         loader: 'babel-loader',
-                        query: {
+                        options: {
                             presets: [
                                 [
                                     '@babel/env', {

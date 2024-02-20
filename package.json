@@ -33,7 +33,8 @@
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^3.10.0",
     "gulp-concat": "^2.6.1",
-    "webpack-stream": "^6.1.2"
+    "webpack": "^5.90.3",
+    "webpack-stream": "^7.0.0"
   },
   "dependencies": {
     "alipay-ftof": "0.1.5",
