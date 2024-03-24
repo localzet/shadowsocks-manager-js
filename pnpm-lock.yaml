@@ -54,8 +54,8 @@ dependencies:
     specifier: ^3.14.1
     version: 3.14.1
   knex:
-    specifier: 2.4.1
-    version: 2.4.1(mysql@2.18.1)(sqlite3@5.1.7)
+    specifier: 2.4.2
+    version: 2.4.2(mysql@2.18.1)(sqlite3@5.1.7)
   later:
     specifier: ^1.2.0
     version: 1.2.0
@@ -1957,7 +1957,7 @@ packages:
   /axios@1.6.7:
     resolution: {integrity: sha512-/hDJGff6/c7u0hDkvkGxR/oy6CbCs8ziCsC7SqmhjfozqiJGc8Z11wrv9z9lYfY4K8l+H9TpjcMDX0xOZmx+RA==}
     dependencies:
-      follow-redirects: 1.15.5
+      follow-redirects: 1.15.6
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -3470,8 +3470,8 @@ packages:
       readable-stream: 2.3.8
     dev: true
 
-  /follow-redirects@1.15.5:
-    resolution: {integrity: sha512-vSFWUON1B+yAw1VN4xMfxgn5fTUiaOzAJCKBwIIgT/+7CuGy9+r+5gITvP62j3RmaD5Ph65UaERdOSRGUzZtgw==}
+  /follow-redirects@1.15.6:
+    resolution: {integrity: sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==}
     engines: {node: '>=4.0'}
     peerDependencies:
       debug: '*'
@@ -4518,8 +4518,8 @@ packages:
       - supports-color
     dev: false
 
-  /knex@2.4.1(mysql@2.18.1)(sqlite3@5.1.7):
-    resolution: {integrity: sha512-5wylehvnTOE8EdypPFakccA1zgo6Lp+TNultncvBUCUD0PasY+PLVa9qPrTFCioxPSPVha1u9ye2niAVVbLM0Q==}
+  /knex@2.4.2(mysql@2.18.1)(sqlite3@5.1.7):
+    resolution: {integrity: sha512-tMI1M7a+xwHhPxjbl/H9K1kHX+VncEYcvCx5K00M16bWvpYPKAZd6QrCu68PtHAdIZNQPWZn0GVhqVBEthGWCg==}
     engines: {node: '>=12'}
     hasBin: true
     peerDependencies:
@@ -6299,9 +6299,6 @@ packages:
   /sqlite3@5.1.7:
     resolution: {integrity: sha512-GGIyOiFaG+TUra3JIfkI/zGP8yZYLPQ0pl1bH+ODjiX57sPhrLU5sQJn1y9bDKZUFYkX1crlrPfSYt0BKKdkog==}
     requiresBuild: true
-    peerDependenciesMeta:
-      node-gyp:
-        optional: true
     dependencies:
       bindings: 1.5.0
       node-addon-api: 7.1.0
