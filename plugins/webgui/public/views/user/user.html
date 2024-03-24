@@ -57,21 +57,6 @@
             </div>
         </md-sidenav>
         <div flex layout="column">
-            <div>
-                <md-toolbar>
-                    <div class="md-toolbar-tools">
-                        <md-button class="md-icon-button" aria-label="menu" ng-click="menuButton()">
-                            <i class="material-icons">{{menuButtonIcon || 'menu'}}</i>
-                        </md-button>
-                        <div>{{ title | translate }}</div>
-                        <span flex></span>
-                        <md-button aria-label="language menu" class="md-icon-button" ng-click="chooseLanguage()"
-                                   ng-if="currentState === 'user.index'">
-                            <md-icon class="material-icons">language</md-icon>
-                        </md-button>
-                    </div>
-                </md-toolbar>
-            </div>
             <div flex layout="row">
                 <md-sidenav class="md-sidenav-left animate-show" md-component-id="innerLeft"
                             md-is-locked-open="$mdMedia('gt-sm')" ng-show="!$mdMedia('gt-sm')"

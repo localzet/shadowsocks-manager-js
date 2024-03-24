@@ -28,7 +28,7 @@
         <md-card>
             <md-card-header>
                 <md-card-header-text ng-click="toRecentSignup()">
-                    <span class="md-headline" translate style="cursor: pointer;">最新注册用户</span>
+                    <span class="md-headline" style="cursor: pointer;">Последний зарегистрированный пользователь</span>
                 </md-card-header-text>
             </md-card-header>
             <md-card-content>
@@ -47,7 +47,7 @@
                     </md-list-item>
                     <md-list-item ng-if="!signupUsers.length">
                         <div flex layout="row" layout-align="space-between center">
-                            <div translate>无</div>
+                            <div>Нет данных</div>
                         </div>
                         <md-divider></md-divider>
                     </md-list-item>
@@ -59,7 +59,7 @@
         <md-card>
             <md-card-header>
                 <md-card-header-text ng-click="toRecentLogin()">
-                    <span class="md-headline" translate style="cursor: pointer;">最近登录用户</span>
+                    <span class="md-headline" style="cursor: pointer;">Недавно вошедшие пользователи</span>
                 </md-card-header-text>
             </md-card-header>
             <md-card-content>
@@ -78,7 +78,7 @@
                     </md-list-item>
                     <md-list-item ng-if="!loginUsers.length">
                         <div flex layout="row" layout-align="space-between center">
-                            <div translate>无</div>
+                            <div>Нет данных</div>
                         </div>
                         <md-divider></md-divider>
                     </md-list-item>
@@ -90,7 +90,7 @@
         <md-card>
             <md-card-header>
                 <md-card-header-text ng-click="toPay('支付宝')">
-                    <span class="md-headline" translate style="cursor: pointer;">支付宝订单</span>
+                    <span class="md-headline" style="cursor: pointer;">Заказы через Alipay</span>
                 </md-card-header-text>
             </md-card-header>
             <md-card-content>
@@ -117,7 +117,7 @@
         <md-card>
             <md-card-header>
                 <md-card-header-text ng-click="toPay('Paypal')">
-                    <span class="md-headline" translate style="cursor: pointer;">PayPal订单</span>
+                    <span class="md-headline" style="cursor: pointer;">Заказы через PayPal</span>
                 </md-card-header-text>
             </md-card-header>
             <md-card-content>
@@ -144,7 +144,7 @@
         <md-card>
             <md-card-header>
                 <md-card-header-text ng-click="toTopFlow()">
-                    <span class="md-headline" translate style="cursor: pointer;">今日流量排行</span>
+                    <span class="md-headline" style="cursor: pointer;">Сегодняшний рейтинг трафика</span>
                 </md-card-header-text>
             </md-card-header>
             <md-card-content>

@@ -50,15 +50,15 @@ app
                 }
             };
             $scope.menus = [{
-                name: '首页',
+                name: 'Главная',
                 icon: 'home',
                 click: 'home.index'
             }, {
-                name: '登录',
+                name: 'Вход',
                 icon: 'cloud',
                 click: 'home.login'
             }, {
-                name: '注册',
+                name: 'Регистрация',
                 icon: 'face',
                 click: 'home.signup'
             }];
@@ -101,7 +101,7 @@ app
                         $state.go('admin.index');
                     }
                 }).catch(err => {
-                    alertDialog.show(err, '确定');
+                    alertDialog.show(err, 'Ок');
                 });
             };
             $scope.findPassword = () => {
@@ -109,9 +109,9 @@ app
                     return homeApi.findPassword($scope.user.email);
                 })
                     .then(success => {
-                        alertDialog.show(success, '确定');
+                        alertDialog.show(success, 'Ок');
                     }).catch(err => {
-                    alertDialog.show(err, '确定');
+                    alertDialog.show(err, 'Ок');
                 });
             };
             $scope.enterKey = key => {
@@ -134,7 +134,7 @@ app
                     return homeApi.sendCode($scope.user.email, $scope.home.refId);
                 })
                     .then(success => {
-                        alertDialog.show('验证码已发至邮箱', '确定');
+                        alertDialog.show('Код подтверждения отправлен на электронную почту', 'Ок');
                         $scope.sendCodeTime = 120;
                         const interval = $interval(() => {
                             if ($scope.sendCodeTime > 0) {
@@ -145,7 +145,7 @@ app
                             }
                         }, 1000);
                     }).catch(err => {
-                    alertDialog.show(err, '确定');
+                    alertDialog.show(err, 'Ок');
                 });
             };
             $scope.signup = () => {
@@ -153,7 +153,7 @@ app
                     return homeApi.userSignup($scope.user.email, $scope.user.code, $scope.user.password, $scope.home.refId);
                 })
                     .then(userType => {
-                        alertDialog.show('用户注册成功', '确定').then(success => {
+                        alertDialog.show('Регистрация пользователя прошла успешно', 'Ок').then(success => {
                             configManager.deleteConfig();
                             if (userType === 'admin') {
                                 $state.go('admin.index');
@@ -162,7 +162,7 @@ app
                             }
                         });
                     }).catch(err => {
-                    alertDialog.show(err, '确定');
+                    alertDialog.show(err, 'Ок');
                 });
             };
         }
@@ -170,7 +170,7 @@ app
     .controller('HomeResetPasswordController', ['$scope', '$http', '$state', '$stateParams', 'alertDialog',
         ($scope, $http, $state, $stateParams, alertDialog) => {
             if ($scope.config.status) {
-                alertDialog.show('请先退出登录再访问重置密码链接', '确定');
+                alertDialog.show('Пожалуйста, выйдите из системы, прежде чем перейти по ссылке для сброса пароля.', 'Ок');
                 return;
             }
             $scope.user = {};
@@ -184,7 +184,7 @@ app
             }).then(() => {
                 return alertDialog.close();
             }).catch(() => {
-                alertDialog.show('该链接已经失效', '确定').then(() => {
+                alertDialog.show('Срок действия этой ссылки истек', 'Ок').then(() => {
                     $state.go('home.index');
                 });
             });
@@ -194,11 +194,11 @@ app
                     token,
                     password: $scope.user.password,
                 }).then(() => {
-                    alertDialog.show('修改密码成功', '确定').then(() => {
+                    alertDialog.show('Пароль обновлен', 'Ок').then(() => {
                         $state.go('home.login');
                     });
                 }).catch(() => {
-                    alertDialog.show('修改密码失败', '确定');
+                    alertDialog.show('Не удалось изменить пароль', 'Ок');
                 });
             };
         }
@@ -206,7 +206,7 @@ app
     .controller('HomeMacLoginController', ['$scope', '$http', '$state', '$stateParams', '$localStorage', 'configManager', 'alertDialog',
         ($scope, $http, $state, $stateParams, $localStorage, configManager, alertDialog) => {
             if ($scope.config.status) {
-                alertDialog.show('请先退出登录再访问mac登录链接', '确定');
+                alertDialog.show('Сначала выйдите из системы, а затем перейдите по ссылке для входа по MAC.', 'Ок');
                 return;
             }
             const mac = $stateParams.mac;
@@ -226,7 +226,7 @@ app
     .controller('HomeTelegramLoginController', ['$scope', '$http', '$state', '$stateParams', '$localStorage', 'configManager', 'alertDialog',
         ($scope, $http, $state, $stateParams, $localStorage, configManager, alertDialog) => {
             if ($scope.config.status) {
-                alertDialog.show('请先退出登录再访问telegram登录链接', '确定');
+                alertDialog.show('Пожалуйста, сначала выйдите из системы, а затем перейдите по ссылке для входа в Telegram.', 'Ок');
                 return;
             }
             const token = $stateParams.token;
@@ -246,7 +246,7 @@ app
     .controller('HomeRefController', ['$scope', '$state', '$stateParams', '$http', 'alertDialog',
         ($scope, $state, $stateParams, $http, alertDialog) => {
             if ($scope.config.status) {
-                alertDialog.show('请先退出登录再访问邀请链接', '确定');
+                alertDialog.show('Пожалуйста, выйдите из системы, прежде чем получить доступ к ссылке-приглашению.', 'Ок');
                 return;
             }
             const refId = $stateParams.refId;
@@ -261,7 +261,7 @@ app
     .controller('HomeRefInputController', ['$scope', '$state', '$stateParams', '$http', 'alertDialog',
         ($scope, $state, $stateParams, $http, alertDialog) => {
             if ($scope.config.status) {
-                alertDialog.show('请先退出登录再访问此链接', '确定');
+                alertDialog.show('Пожалуйста, выйдите из системы, прежде чем получить доступ к этой ссылке', 'Ок');
                 return;
             }
             $scope.home.refInput = true;
@@ -318,7 +318,7 @@ app
                     $state.go('admin.index');
                 }
             }).catch(err => {
-                alertDialog.show('登录失败，请稍后重试', '确定').then(() => {
+                alertDialog.show('Войти не удалось, пожалуйста, повторите попытку позже', 'Ок').then(() => {
                     $state.go('home.social');
                 });
             });
@@ -341,7 +341,7 @@ app
                     $state.go('admin.index');
                 }
             }).catch(err => {
-                alertDialog.show('登录失败，请稍后重试', '确定').then(() => {
+                alertDialog.show('Войти не удалось, пожалуйста, повторите попытку позже', 'Ок').then(() => {
                     $state.go('home.social');
                 });
             });
@@ -365,7 +365,7 @@ app
                     $state.go('admin.index');
                 }
             }).catch(err => {
-                alertDialog.show('登录失败，请稍后重试', '确定').then(() => {
+                alertDialog.show('Войти не удалось, пожалуйста, повторите попытку позже', 'Ок').then(() => {
                     $state.go('home.social');
                 });
             });
@@ -389,7 +389,7 @@ app
                     $state.go('admin.index');
                 }
             }).catch(err => {
-                alertDialog.show('登录失败，请稍后重试', '确定').then(() => {
+                alertDialog.show('Войти не удалось, пожалуйста, повторите попытку позже', 'Ок').then(() => {
                     $state.go('home.social');
                 });
             });

@@ -23,13 +23,13 @@
   ~              For any questions, please contact <creator@localzet.com>
   -->
 
-<md-dialog aria-label="set email dialog" ng-style="setDialogWidth()">
+  <md-dialog aria-label="Диалог настройки электронной почты" ng-style="setDialogWidth()">
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h2>邮件设置</h2>
+            <h2>Настройки электронной почты</h2>
             <span flex></span>
             <md-button class="md-icon-button" ng-click="publicInfo.hide()">
-                <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                <md-icon class="material-icons" aria-label="Закрыть диалог">close</md-icon>
             </md-button>
         </div>
     </md-toolbar>
@@ -37,18 +37,18 @@
         <div class="md-dialog-content" ng-hide="publicInfo.isLoading">
             <form name="emailForm">
                 <md-input-container class="md-block" flex-gt-sm>
-                    <label>标题</label>
+                    <label>Заголовок</label>
                     <input name="title" ng-model="publicInfo.title">
                 </md-input-container>
                 <md-input-container class="md-block">
-                    <label>内容</label>
+                    <label>Содержание</label>
                     <textarea ng-model="publicInfo.content" rows="5"></textarea>
                 </md-input-container>
             </form>
             <div layout="row" flex layout-align="space-around center">
                 <div flex="60"></div>
                 <md-button class="md-raised md-primary" ng-click="publicInfo.set(publicInfo.title, publicInfo.content)">
-                    保存
+                    Сохранить
                 </md-button>
             </div>
         </div>
@@ -58,3 +58,4 @@
         </div>
     </md-dialog-content>
 </md-dialog>
+

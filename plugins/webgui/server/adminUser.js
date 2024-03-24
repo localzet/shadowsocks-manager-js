@@ -91,10 +91,10 @@ exports.getUsers = async (req, res) => {
 };
 
 exports.addUser = (req, res) => {
-    req.checkBody('email', 'Invalid email').notEmpty();
-    req.checkBody('password', 'Invalid password').notEmpty();
-    req.checkBody('type', 'Invalid type').isIn(['normal', 'admin']);
-    req.getValidationResult().then(result => {
+    req.check('email', 'Invalid email').notEmpty();
+    req.check('password', 'Invalid password').notEmpty();
+    req.check('type', 'Invalid type').isIn(['normal', 'admin']);
+    req.validationResult(req).then(result => {
         if (result.isEmpty()) {
             const email = req.body.email;
             const password = req.body.password;

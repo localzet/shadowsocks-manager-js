@@ -73,15 +73,15 @@ exports.getOneServer = (req, res) => {
 
 exports.addServer = async (req, res) => {
     try {
-        req.checkBody('type', 'Invalid type').notEmpty();
-        req.checkBody('name', 'Invalid name').notEmpty();
-        req.checkBody('address', 'Invalid address').notEmpty();
-        req.checkBody('port', 'Invalid port').isInt({min: 1, max: 65535});
-        req.checkBody('password', 'Invalid password').notEmpty();
-        req.checkBody('method', 'Invalid method').notEmpty();
-        req.checkBody('scale', 'Invalid scale').notEmpty();
-        req.checkBody('shift', 'Invalid shift').isInt();
-        const result = await req.getValidationResult();
+        req.check('type', 'Invalid type').notEmpty();
+        req.check('name', 'Invalid name').notEmpty();
+        req.check('address', 'Invalid address').notEmpty();
+        req.check('port', 'Invalid port').isInt({min: 1, max: 65535});
+        req.check('password', 'Invalid password').notEmpty();
+        req.check('method', 'Invalid method').notEmpty();
+        req.check('scale', 'Invalid scale').notEmpty();
+        req.check('shift', 'Invalid shift').isInt();
+        const result = await req.validationResult(req);
         if (!result.isEmpty()) {
             return Promise.reject(result.array());
         }
@@ -134,15 +134,15 @@ exports.addServer = async (req, res) => {
 
 exports.editServer = async (req, res) => {
     try {
-        req.checkBody('type', 'Invalid type').notEmpty();
-        req.checkBody('name', 'Invalid name').notEmpty();
-        req.checkBody('address', 'Invalid address').notEmpty();
-        req.checkBody('port', 'Invalid port').isInt({min: 1, max: 65535});
-        req.checkBody('password', 'Invalid password').notEmpty();
-        req.checkBody('method', 'Invalid method').notEmpty();
-        req.checkBody('scale', 'Invalid scale').notEmpty();
-        req.checkBody('shift', 'Invalid shift').isInt();
-        const result = await req.getValidationResult();
+        req.check('type', 'Invalid type').notEmpty();
+        req.check('name', 'Invalid name').notEmpty();
+        req.check('address', 'Invalid address').notEmpty();
+        req.check('port', 'Invalid port').isInt({min: 1, max: 65535});
+        req.check('password', 'Invalid password').notEmpty();
+        req.check('method', 'Invalid method').notEmpty();
+        req.check('scale', 'Invalid scale').notEmpty();
+        req.check('shift', 'Invalid shift').isInt();
+        const result = await req.validationResult(req);
         if (!result.isEmpty()) {
             return Promise.reject(result.array());
         }

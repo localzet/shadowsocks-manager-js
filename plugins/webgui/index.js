@@ -68,7 +68,7 @@ if (config.plugins.webgui.cors) {
 }
 
 app.use(bodyParser.json());
-app.use(expressValidator());
+app.use(expressValidator.check());
 app.use(compression());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(sessionParser);

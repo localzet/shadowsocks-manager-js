@@ -189,11 +189,11 @@ const createUser = async (email, password, from = '') => {
 
 exports.signup = async (req, res) => {
     try {
-        req.checkBody('email', 'Invalid email').isEmail();
-        req.checkBody('code', 'Invalid code').notEmpty();
-        req.checkBody('password', 'Invalid password').notEmpty();
+        req.check('email', 'Invalid email').isEmail();
+        req.check('code', 'Invalid code').notEmpty();
+        req.check('password', 'Invalid password').notEmpty();
         let type = 'normal';
-        const validation = await req.getValidationResult();
+        const validation = await req.validationResult(req);
         if (!validation.isEmpty()) {
             throw (validation.array());
         }
@@ -288,9 +288,9 @@ exports.login = async (req, res) => {
     try {
         delete req.session.user;
         delete req.session.type;
-        req.checkBody('email', 'Invalid email').isEmail();
-        req.checkBody('password', 'Invalid password').notEmpty();
-        const validation = await req.getValidationResult();
+        req.check('email', 'Invalid email').isEmail();
+        req.check('password', 'Invalid password').notEmpty();
+        const validation = await req.validationResult(req);
         if (!validation.isEmpty()) {
             throw ('invalid body');
         }
@@ -767,8 +767,8 @@ exports.status = async (req, res) => {
 
 exports.sendCode = (req, res) => {
     const refCode = req.body.refCode;
-    req.checkBody('email', 'Invalid email').isEmail();
-    req.getValidationResult().then(result => {
+    req.check('email', 'Invalid email').isEmail();
+    req.validationResult(req).then(result => {
         if (result.isEmpty) {
             return;
         }
@@ -903,9 +903,9 @@ exports.checkResetPasswordToken = (req, res) => {
 };
 
 exports.resetPassword = (req, res) => {
-    req.checkBody('token', 'Invalid token').notEmpty();
-    req.checkBody('password', 'Invalid password').notEmpty();
-    req.getValidationResult().then(result => {
+    req.check('token', 'Invalid token').notEmpty();
+    req.check('password', 'Invalid password').notEmpty();
+    req.validationResult(req).then(result => {
         if (result.isEmpty) {
             return;
         }

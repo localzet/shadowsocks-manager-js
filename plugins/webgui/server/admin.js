@@ -152,14 +152,13 @@ exports.getOneAccount = async (req, res) => {
         console.log(err);
         res.status(403).end();
     }
-    ;
 };
 
 exports.addAccount = (req, res) => {
-    req.checkBody('port', 'Invalid port').isInt({min: 1, max: 65535});
-    req.checkBody('password', 'Invalid password').notEmpty();
-    req.checkBody('time', 'Invalid time').notEmpty();
-    req.getValidationResult().then(result => {
+    req.check('port', 'Invalid port').isInt({min: 1, max: 65535});
+    req.check('password', 'Invalid password').notEmpty();
+    req.check('time', 'Invalid time').notEmpty();
+    req.validationResult(req).then(result => {
         if (result.isEmpty()) {
             const type = +req.body.type;
             const orderId = +req.body.orderId;
@@ -198,8 +197,8 @@ exports.deleteAccount = (req, res) => {
 };
 
 exports.changeAccountPort = (req, res) => {
-    req.checkBody('port', 'Invalid port').isInt({min: 1, max: 65535});
-    req.getValidationResult().then(result => {
+    req.check('port', 'Invalid port').isInt({min: 1, max: 65535});
+    req.validationResult(req).then(result => {
         if (result.isEmpty()) {
             const accountId = req.params.accountId;
             const port = +req.body.port;
@@ -532,9 +531,9 @@ exports.sendUserEmail = (req, res) => {
     const userId = +req.params.userId;
     const title = req.body.title;
     const content = req.body.content;
-    req.checkBody('title', 'Invalid title').notEmpty();
-    req.checkBody('content', 'Invalid content').notEmpty();
-    req.getValidationResult().then(result => {
+    req.check('title', 'Invalid title').notEmpty();
+    req.check('content', 'Invalid content').notEmpty();
+    req.validationResult(req).then(result => {
         if (result.isEmpty()) {
             return user.getOne(userId).then(user => user.email);
         }

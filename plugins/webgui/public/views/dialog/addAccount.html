@@ -30,29 +30,29 @@
     <form ng-cloak ng-show="publicInfo.status === 'choose' && !publicInfo.isLoading">
         <md-dialog-content>
             <div class="md-dialog-content">
-                <div style="margin-bottom: 20px;">请选择添加账号类型：</div>
+                <div style="margin-bottom: 20px;">Пожалуйста, выберите тип добавляемого аккаунта:</div>
                 <md-radio-group ng-model="publicInfo.accountType">
                     <md-radio-button value="port">
-                        端口
+                        Порт
                     </md-radio-button>
                     <md-radio-button value="mac">
-                        MAC地址
+                        MAC-адрес
                     </md-radio-button>
                     <md-radio-button value="giftcard" ng-if="publicInfo.isGiftCardUse">
-                        充值码
+                        Код пополнения
                     </md-radio-button>
                     <md-radio-button value="refCode" ng-if="publicInfo.isRefCodeUse">
-                        邀请码
+                        Код приглашения
                     </md-radio-button>
                 </md-radio-group>
             </div>
         </md-dialog-content>
         <md-dialog-actions layout="row">
             <md-button ng-click="publicInfo.hide()">
-                关闭
+                Закрыть
             </md-button>
             <md-button class="md-primary" ng-click="publicInfo.next()">
-                下一步
+                Следующий шаг
             </md-button>
         </md-dialog-actions>
     </form>
@@ -60,7 +60,7 @@
         <md-dialog-content>
             <div class="md-dialog-content">
                 <div layout="row" layout-wrap flex ng-show="publicInfo.account.length === 0">
-                    暂无可分配的账号
+                    Нет доступных для назначения аккаунтов
                 </div>
                 <div layout="row" layout-wrap flex ng-show="publicInfo.account.length">
                     <div flex="50" flex-md="33" flex-gt-md="25" ng-repeat="a in publicInfo.account">
@@ -73,10 +73,10 @@
         </md-dialog-content>
         <md-dialog-actions layout="row">
             <md-button ng-click="publicInfo.hide()">
-                关闭
+                Закрыть
             </md-button>
             <md-button class="md-primary" ng-click="publicInfo.setPort()">
-                确定
+                Подтвердить
             </md-button>
         </md-dialog-actions>
     </form>
@@ -84,18 +84,18 @@
         <md-dialog-content>
             <div class="md-dialog-content">
                 <md-input-container class="md-block">
-                    <label>MAC地址</label>
+                    <label>MAC-адрес</label>
                     <input type="text" required name="macAddress" ng-model="publicInfo.mac.macAddress">
                 </md-input-container>
                 <md-input-container class="md-block" style="height: 54px;">
-                    <label>端口</label>
+                    <label>Порт</label>
                     <md-select ng-model="publicInfo.mac.account">
                         <md-option ng-value="account.id" ng-repeat="account in publicInfo.account">{{ account.port }}
                         </md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container class="md-block" style="height: 54px;">
-                    <label>服务器</label>
+                    <label>Сервер</label>
                     <md-select ng-model="publicInfo.mac.server">
                         <md-option ng-value="server.id" ng-repeat="server in publicInfo.validServer">{{ server.name }}
                         </md-option>
@@ -105,35 +105,35 @@
         </md-dialog-content>
         <md-dialog-actions layout="row">
             <md-button ng-click="publicInfo.hide()">
-                关闭
+                Закрыть
             </md-button>
             <md-button class="md-primary" ng-click="publicInfo.setMac()"
                        ng-disabled="!publicInfo.isMacAddress(publicInfo.mac.macAddress)">
-                确定
+                Подтвердить
             </md-button>
         </md-dialog-actions>
     </form>
     <form ng-cloak ng-show="publicInfo.status === 'giftcard' && !publicInfo.isLoading">
         <md-dialog-content>
             <div class="md-dialog-content">
-                <div style="margin-bottom: 20px;">请选择充值的端口：</div>
+                <div style="margin-bottom: 20px;">Пожалуйста, выберите порт для пополнения:</div>
                 <md-radio-group ng-model="publicInfo.giftcardAccountId">
                     <md-radio-button value="{{account.id}}" ng-repeat="account in publicInfo.userAccount">
                         {{ account.port }}
                     </md-radio-button>
                     <md-radio-button value="0">
-                        新建端口
+                        Создать порт
                     </md-radio-button>
                 </md-radio-group>
             </div>
         </md-dialog-content>
         <md-dialog-actions layout="row">
             <md-button ng-click="publicInfo.hide()">
-                关闭
+                Закрыть
             </md-button>
             <md-button class="md-primary" ng-click="publicInfo.status = 'giftcardCode'"
                        ng-disabled="!publicInfo.giftcardAccountId">
-                确定
+                Подтвердить
             </md-button>
         </md-dialog-actions>
     </form>
@@ -141,17 +141,17 @@
         <md-dialog-content>
             <div class="md-dialog-content">
                 <md-input-container class="md-block">
-                    <label translate>充值码</label>
+                    <label>Код пополнения</label>
                     <input type="text" required name="code" ng-model="publicInfo.giftcardCode">
                 </md-input-container>
             </div>
         </md-dialog-content>
         <md-dialog-actions layout="row">
             <md-button ng-click="publicInfo.hide()">
-                关闭
+                Закрыть
             </md-button>
             <md-button class="md-primary" ng-click="publicInfo.checkGiftCard()" ng-disabled="!publicInfo.giftcardCode">
-                确定
+                Подтвердить
             </md-button>
         </md-dialog-actions>
     </form>
@@ -159,22 +159,22 @@
         <md-dialog-content>
             <div class="md-dialog-content">
                 <md-input-container class="md-block">
-                    <label>邀请码数量</label>
+                    <label>Количество кодов приглашения</label>
                     <input type="text" required name="code" ng-model="publicInfo.refCodeNumber">
                 </md-input-container>
                 <md-input-container class="md-block">
-                    <label>单个邀请码可邀请用户数</label>
+                    <label>Количество пользователей, которых можно пригласить с одного кода</label>
                     <input type="text" required name="code" ng-model="publicInfo.refUserNumber">
                 </md-input-container>
             </div>
         </md-dialog-content>
         <md-dialog-actions layout="row">
             <md-button ng-click="publicInfo.hide()">
-                关闭
+                Закрыть
             </md-button>
             <md-button class="md-primary" ng-click="publicInfo.addRefCodeForUser()"
                        ng-disabled="!publicInfo.refCodeNumber || !publicInfo.refUserNumber">
-                确定
+                Подтвердить
             </md-button>
         </md-dialog-actions>
     </form>
@@ -182,18 +182,18 @@
         <md-dialog-content>
             <div class="md-dialog-content">
                 <md-input-container class="md-block">
-                    <label>MAC地址</label>
+                    <label>MAC-адрес</label>
                     <input type="text" required name="macAddress" ng-model="publicInfo.mac.macAddress">
                 </md-input-container>
                 <md-input-container class="md-block" style="height: 54px;">
-                    <label>端口</label>
+                    <label>Порт</label>
                     <md-select ng-model="publicInfo.mac.account">
                         <md-option ng-value="account.id" ng-repeat="account in publicInfo.account">{{ account.port }}
                         </md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container class="md-block" style="height: 54px;">
-                    <label>服务器</label>
+                    <label>Сервер</label>
                     <md-select ng-model="publicInfo.mac.server">
                         <md-option ng-value="server.id" ng-repeat="server in publicInfo.validServer">{{ server.name }}
                         </md-option>
@@ -203,10 +203,10 @@
         </md-dialog-content>
         <md-dialog-actions layout="row">
             <md-button ng-click="publicInfo.hide()">
-                关闭
+                Закрыть
             </md-button>
             <md-button class="md-primary" ng-click="publicInfo.editMac()">
-                确定
+                Подтвердить
             </md-button>
         </md-dialog-actions>
     </form>

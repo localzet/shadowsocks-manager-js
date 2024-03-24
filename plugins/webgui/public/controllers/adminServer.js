@@ -587,10 +587,10 @@ app.controller('AdminServerController', ['$scope', '$http', '$state', 'moment', 
                         tags: $scope.tags,
                     })
                 }).then(() => {
-                    alertDialog.show('添加服务器成功', '确定');
+                    alertDialog.show('添加服务器成功', 'Ок');
                     $state.go('admin.server');
                 }).catch(() => {
-                    alertDialog.show('添加服务器失败', '确定');
+                    alertDialog.show('添加服务器失败', 'Ок');
                 });
             };
             $scope.cancel = () => {
@@ -725,10 +725,10 @@ app.controller('AdminServerController', ['$scope', '$http', '$state', 'moment', 
                         check: $scope.server.check,
                     }),
                 ]).then(() => {
-                    alertDialog.show('修改服务器成功', '确定');
+                    alertDialog.show('修改服务器成功', 'Ок');
                     $state.go('admin.serverPage', {serverId: $stateParams.serverId});
                 }).catch(() => {
-                    alertDialog.show('修改服务器失败', '确定');
+                    alertDialog.show('修改服务器失败', 'Ок');
                 });
             };
             $scope.cancel = () => {
