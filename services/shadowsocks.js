@@ -154,7 +154,6 @@ const connect = () => {
                 }
             }
         }
-        ;
     });
 
     client.on('error', err => {
